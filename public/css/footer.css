@@ -1,0 +1,106 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+footer .site-footer {
+  height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+footer .site-footer hr {
+  border: none;
+}
+
+footer .site-footer .footer-logo {
+  width: 195px;
+  height: 180px;
+  margin: auto;
+}
+
+footer .site-footer .social-icons a {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 50%;
+}
+
+footer .site-footer .social-icons a.line {
+  background-image: url("/img/LINE-ICON.jpg");
+  background-position: center;
+  background-size: contain;
+}
+
+footer .site-footer .social-icons a.facebook {
+  background-image: url("/img/facebook-ICON.jpg");
+  background-position: center;
+  background-size: contain;
+  margin: 0px 20px;
+}
+
+footer .site-footer .social-icons a.instagram {
+  background-image: url("/img/Instagram.ICON.jpg");
+  background-position: center;
+  background-size: contain;
+}
+
+footer .site-footer .footer-arrow {
+  font-size: 72px;
+  color: #f7a269;
+  position: relative;
+}
+
+footer .site-footer .footer-arrow-text {
+  font-size: 18px;
+  letter-spacing: 1.6px;
+  position: absolute;
+  top: 40px;
+  left: 4px;
+}
+
+footer .site-footer .common-problems {
+  font-size: 16px;
+  letter-spacing: 3.2px;
+  color: #444444;
+}
+
+footer .site-footer .common-problems .lists {
+  border-left: 1px solid #8090a0;
+  padding-right: 10px;
+}
+
+footer .site-footer .common-problems .list {
+  cursor: default;
+}
+
+footer .site-footer .common-problems a {
+  color: #8090a0;
+}
+
+footer .site-footer .common-problems ul li {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+footer .site-footer .copyright {
+  height: 80px;
+  background-color: #7a7573;
+  font-size: 15px;
+  letter-spacing: 1.6px;
+  color: #ffffff;
+}
+/*# sourceMappingURL=footer.css.map */

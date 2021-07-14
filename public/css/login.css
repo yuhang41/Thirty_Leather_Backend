@@ -1,0 +1,268 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* {
+  list-style: none;
+  margin: 0px;
+  font-family: Arial, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+}
+
+.member-center {
+  width: 100%;
+  height: 1010px;
+  background-color: #ebeae5;
+}
+
+.member-center .m-center-index {
+  font-size: 72px;
+  color: #ffffff;
+}
+
+.member-center .list-Group .list-group-item {
+  width: 170px;
+  height: 60px;
+  background-color: #7a7573;
+  color: #ebeae5;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 3.2px;
+  border-bottom: 1px solid black;
+  outline: none;
+  z-index: 2;
+}
+
+.member-center .list-Group .list-group-item:hover {
+  background-color: #7a7573;
+  color: #ebeae5;
+}
+
+.member-center .list-Group .list-group-item.active {
+  width: 205px;
+  background-color: #ffffff;
+  color: #8090a0;
+  font-weight: bold;
+  border-color: #86b2c4;
+  border-right: 18px solid #86b2c4;
+  margin-left: -18px;
+  z-index: 2;
+}
+
+.member-center .list-Group .list-group-item:first-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.member-center .list-Group .list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.member-center .tab-contents {
+  margin-left: -17px;
+}
+
+.member-center .tab-contents .member-data {
+  width: 1140px;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid #f7a269;
+}
+
+.member-center .tab-contents .member-data .fa-user {
+  font-size: 16px;
+  color: #8090a0;
+}
+
+.member-center .tab-contents .member-data .user-id {
+  font-size: 14px;
+  color: #8090a0;
+  margin: 0px 16px;
+}
+
+.member-center .tab-contents .member-data .general-member {
+  width: 80px;
+  background-color: #f7a269;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.member-center .tab-contents .member-data .User-edit {
+  color: #abbac9;
+}
+
+.member-center .tab-contents .member-data .User-edit .fa-pen {
+  font-size: 18px;
+}
+
+.member-center .tab-contents .member-data .User-edit .user-edit {
+  font-size: 15px;
+}
+
+.member-center .tab-contents .member-data .member-container {
+  width: 95%;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data {
+  border-bottom: 2px solid #abbac9;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .label1 {
+  font-size: 14px;
+  color: #8090a0;
+  letter-spacing: 3.2px;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .input {
+  width: 278px;
+  font-size: 22.75px;
+  border: none;
+  border-bottom: 1px solid #8090a0;
+  outline: none;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .county,
+.member-center .tab-contents .member-data .member-container .input-data .zipcode {
+  width: 65px;
+  height: 32px;
+  font-size: 14px;
+  color: #8090a0;
+  border: 1px solid #8090a0;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .district {
+  width: 65px;
+  height: 32px;
+  font-size: 14px;
+  color: #8090a0;
+  border: 1px solid #8090a0;
+  margin: 0px 20px;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .input1 {
+  width: 235px;
+  height: 32px;
+  font-size: 14px;
+  color: #8090a0;
+  border: 1px solid #8090a0;
+  outline: none;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .member-btn button {
+  height: 41px;
+  border: 1px solid #a0a0a0;
+  font-size: 19.5px;
+  letter-spacing: 3.2px;
+  color: #444444;
+  line-height: 10px;
+}
+
+.member-center .tab-contents .member-data .member-container .input-data .member-btn button:hover {
+  background-color: #abbac9;
+  color: #ffffff;
+}
+
+.member-center .tab-contents .member-data .order-five {
+  font-size: 29.25px;
+  color: #8090a0;
+}
+
+.member-center .tab-contents .member-data .table-container {
+  width: 90%;
+}
+
+.member-center .tab-contents .member-data .table-container .table {
+  font-size: 14px;
+}
+
+.member-center .tab-contents .member-data .table-container .table thead {
+  background-color: #7a7573;
+  color: #ebeae5;
+}
+
+.member-center .tab-contents .member-data .table-container .table .orderNumber {
+  width: 120px;
+  background-color: #a0a0a0;
+  color: #ffffff;
+}
+
+.member-center .tab-contents .member-data .table-container .table .checkInvoice, .member-center .tab-contents .member-data .table-container .table .returnInfor {
+  background-color: #a0a0a0;
+  color: #ffffff;
+}
+
+.member-center .tab-contents .member-data .table-container .table-icon button {
+  background-color: #ffffff;
+  color: #a0a0a0;
+  border: none;
+}
+
+.member-center .tab-contents .member-data .table-container .table-icon button:hover {
+  color: #f7a269;
+}
+
+@media (max-width: 1024px) {
+  .list-Group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .table tr {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .table th {
+    display: none;
+  }
+  .table .orderNumber {
+    width: 120px;
+    margin: auto;
+  }
+  .table .orderNumber1 {
+    background-color: black;
+    margin-top: 10vh;
+  }
+  .table .checkInvoice, .table .returnInfor {
+    width: 80px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .data-left {
+    margin-top: 50px;
+    margin-left: 25%;
+  }
+  .data-right {
+    margin-left: 25%;
+  }
+  .address-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .address-block .address {
+    margin-left: 15px;
+  }
+  .address-block .address .input1 {
+    position: absolute;
+    top: 75px;
+  }
+}
+/*# sourceMappingURL=login.css.map */
