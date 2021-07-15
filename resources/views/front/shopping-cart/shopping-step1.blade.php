@@ -111,8 +111,10 @@
                             </li>
                             <li class="order-cart subtotal"><p>$<span class="subtotal-price" data-subtotal={{ $item->price }}>{{ $item->price }}</span></p></li>
                             <li class="order-cart delete-cart">
-                                <form action="" method="" class="delete">
-                                    <div class="delete-button"><i class="fas fa-times"></i></div>
+                                <form action="{{ asset('/front/cart/delete') }}/{{ $item->id }}" method="POST" class="delete">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="delete-button"><i class="fas fa-times"></i></button>
                                 </form>
                             </li>
                             <li class="order-cart favorite">

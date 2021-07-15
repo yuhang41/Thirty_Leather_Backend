@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 <div class="go-home-button">
-                    <button class="home-button">回首頁<i class="fas fa-long-arrow-alt-right"></i></button>
+                    <a href={{ asset('/front') }} class="home-button">回首頁<i class="fas fa-long-arrow-alt-right"></i></a>
                 </div>
             </div>
         </div>

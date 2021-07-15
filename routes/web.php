@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    // return redirect('/front');
+    // return view('welcome');
+    return redirect('/front');
 });
 
 Auth::routes();
@@ -73,7 +73,9 @@ Route::prefix('front')->group(function(){
         Route::get('/shoppingstep2','FrontController@ShoppingStep2');
         Route::post('/shoppingstep2/check','FrontController@Step2_Check');
     });
+    Route::delete('cart/delete/{id}','FrontController@delete');
     Route::get('/shoppingstep3','FrontController@ShoppingStep3');
+
     Route::prefix('product')->group(function(){
         Route::get('/','FrontController@product_index');
         Route::get('/detail/{id}','FrontController@product_detail');
@@ -89,8 +91,16 @@ Route::prefix('front')->group(function(){
         Route::post('/update','FrontController@user_update');
         Route::get('/passwordModify','FrontController@user_password_modify');
         Route::post('/passwordModify/update','FrontController@user_password_update');
+        Route::post('/logout', 'Auth\LoginController@logout')->name('user_logout');
     });
     Route::prefix('login')->group(function(){
         Route::get('/','FrontController@login');
+        // Route::get('/sigin', 'Auth\LoginController@showLoginForm');
+        Route::post('/sigin', 'Auth\LoginController@login')->name('signin');
+        // Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
+        Route::post('/register', 'Auth\RegisterController@register')->name('login_register');
+    });
+    Route::prefix('shose')->group(function(){
+        Route::get('/','FrontController@shose');
     });
 });

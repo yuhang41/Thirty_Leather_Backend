@@ -8,20 +8,21 @@
 @section('content')
 <div class="main-container">
     <div class="cont">
-        <div class="form sign-in">
+        <form action={{ route('signin') }} method="POST" class="form sign-in" id="user-signin">
+            @csrf
             <h2>會員登入</h2>
             <label>
                 <span>信箱</span>
-                <input type="email" />
+                <input type="email" name="email" id="login-email"/>
             </label>
             <label>
                 <span>密碼</span>
-                <input type="password" />
+                <input type="password" name="password" id="login-passwrd"/>
             </label>
             <p class="forgot-pass">忘記密碼?</p>
-            <button type="button" class="submit">登入</button>
+            <button class="submit" id="user-login">登入</button>
             <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
-        </div>
+        </form>
         <div class="sub-cont">
             <div class="img">
                 <div class="img__text m--up">
@@ -36,31 +37,39 @@
                     <span class="m--in">點我登入</span>
                 </div>
             </div>
-            <div class="form sign-up">
+            <form action={{ route('login_register') }} method="POST" class="form sign-up" id="user-signin-register">
+                @csrf
                 <h2>會員註冊</h2>
+                @php
+                    // dd();
+                @endphp
                 <label>
                     <span>名稱</span>
-                    <input type="text" />
+                    <input type="text" name="name"/>
                 </label>
                 <label>
                     <span>信箱</span>
-                    <input type="email" />
+                    <input type="email" name="email"/>
                 </label>
                 <label>
                     <span>密碼</span>
-                    <input type="password" />
+                    <input type="password" name="password"/>
+                </label>
+                <label>
+                    <span>確認密碼</span>
+                    <input type="password" name="password_confirmation"/>
                 </label>
                 <label>
                     <span>電話</span>
-                    <input type="text" />
+                    <input type="text" name="phone"/>
                 </label>
                 <label>
                     <span>地址</span>
-                    <input type="text"/>
+                    <input type="text" name="address"/>
                 </label>
-                <button type="button" class="submit">註冊</button>
+                <button class="submit" id="user-register">註冊</button>
                 <button type="button" class="fb-btn">Join with <span>facebook</span></button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

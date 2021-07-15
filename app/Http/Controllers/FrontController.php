@@ -29,6 +29,8 @@ class FrontController extends Controller
         $this->user_password_modify = 'front.user.password-modify';
         //login
         $this->login = 'front.login.index';
+        //shose
+        $this->shose = 'front.shose.index';
     }
     public static function CartCalc(){//計算價錢跟數量和運費的共用涵式
         $total = \Cart::getTotalQuantity();//取的session Cart 裡的所有 quantity 總數量
@@ -126,7 +128,8 @@ class FrontController extends Controller
     }
     public function product_detail($id){
         $product = Product::find($id);
-        return view($this->product_detail,compact('product'));
+        $list = Product::get();
+        return view($this->product_detail,compact('product','list'));
     }
 
     public function add(Request $req){
@@ -156,6 +159,10 @@ class FrontController extends Controller
             ),
         ));
         return 'success';
+    }
+    public function delete($id){
+        \Cart::remove($id);
+        return redirect('/front/shoppingstep1')->with('message','購物車刪除成功');
     }
     public function CartContent(){
         $dataCart = \Cart::getContent();
@@ -209,5 +216,8 @@ class FrontController extends Controller
     //login
     public function login(){
         return view($this->login);
+    }
+    public function shose(){
+        return view($this->shose);
     }
 }

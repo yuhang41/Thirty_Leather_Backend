@@ -12,10 +12,10 @@
         <div class="swiper-container myswiper1">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" style="background-image: url({{ asset('img/banner.jpg') }});"></div>
-                <div class="swiper-slide" style="background-color: rgb(128,128,128);"></div>
-                <div class="swiper-slide" style="background-color: rgb(169,169,169);"></div>
-                <div class="swiper-slide" style="background-color: rgb(169,169,169);"></div>
-                <div class="swiper-slide" style="background-color: rgb(169,169,169);"></div>
+                <div class="swiper-slide" style="background-image: url({{ asset('img/banner2.jpg') }});"></div>
+                <div class="swiper-slide" style="background-image: url({{ asset('img/banner3.jpg') }});"></div>
+                <div class="swiper-slide" style="background-image: url({{ asset('img/banner4.jpg') }});"></div>
+                <div class="swiper-slide" style="background-image: url({{ asset('img/banner5.jpg') }});"></div>
             </div>
         </div>
         <div class="swiper-pagination1"></div>
@@ -63,7 +63,7 @@
         <div class="story-content">
             <img src={{ asset('img/story-img.jpg') }} alt="">
             <!-- <img src="img/scissors.svg" alt=""> -->
-            <svg id="scissors" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg"
+            <svg id="scissors" data-name="圖層 1" data-inviewport="scale-in" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000.33 843.84">
                 <g class="cls-2">
                     <path class="scissors"
@@ -112,24 +112,24 @@
                 </g>
             </svg>
             <div class="story-discript">
-                <div class="subtitle" data-aos="fade-up">
+                <div class="subtitle" data-aos="fade-up" data-aos-anchor-placement="top-center">
                     WE STORY .
                 </div>
-                <div class="title" data-aos="fade-up">
-                    分享自己喜歡的生活質感<br>
-                    遇見眼光相似的妳(你)我.
+                <div class="title" data-aos="fade-up" data-aos-anchor-placement="top-center">
+                    <p class="short-line">分享自己喜歡的生活質感</p>
+                    <p>遇見眼光相似的妳(你)我.</p>
                 </div>
                 <div class="content" data-aos="fade-up">
                     <div class="preamble">
-                        三十革 因鞋而生<br>
-                        抱著分享好鞋的初衷<br>
-                        柔和老傳統的注入新創意<br>
-                        傳承志鞋一甲子師傅的精湛工藝
+                        <p class="long-line">三十革 因鞋而生</p>
+                        <p>抱著分享好鞋的初衷</p>
+                        <p>柔和老傳統的注入新創意</p>
+                        <p>傳承志鞋一甲子師傅的精湛工藝</p>
                     </div>
                     <div class="main-body">
-                        融入新世代的創新與設計於鞋子中<br>
-                        激盪出新時代x舊工藝的時尚鞋履<br>
-                        延續台灣 鞋業王國 的美譽
+                        <p>融入新世代的創新與設計於鞋子中</p>
+                        <p>激盪出新時代x舊工藝的時尚鞋履</p>
+                        <p>延續台灣 鞋業王國 的美譽</p>
                     </div>
                     <div class="ending">
                         手作每一雙舒適、經典的鞋履與大家分享
@@ -141,26 +141,26 @@
     <!-- 製鞋文章 -->
     <div class="shoemaking d-flex">
         <div class="container mx-auto">
-            <div class="shoes-card">
-                <div class="chose-shoes" data-aos="fade-up" data-aos-duration="400">
-                    <img src="https://dummyimage.com/400x400" alt="">
+            <div class="shoemaking-card" data-aos="fade-up" data-aos-anchor-placement="top-center">
+                <div class="shoes-card chose-shoes">
+                    <img src="./img/shoes-card1.svg" alt="">
                     <div class="text">
-                        <span>購鞋怎麼選</span><br>
-                        <span>How to choose</span>
+                        <p>購鞋怎麼選</p>
+                        <p>How to choose</p>
                     </div>
                 </div>
-                <div class="shoes-introduction" data-aos="fade-up" data-aos-duration="800">
-                    <img src="https://dummyimage.com/400x400" alt="">
+                <div class="shoes-card shoes-introduction">
+                    <img src="./img/shoes-card2.svg" alt="">
                     <div class="text">
-                        <span>系列鞋款介紹</span><br>
-                        <span>Series Introduction</span>
+                        <p>系列鞋款介紹</p>
+                        <p>Series Introduction</p>
                     </div>
                 </div>
-                <div class="shoemaking-story" data-aos="fade-up" data-aos-duration="1200">
-                    <img src="https://dummyimage.com/400x400" alt="">
+                <div class="shoes-card shoemaking-story">
+                    <img src="./img/shoes-card3.svg" alt="">
                     <div class="text">
-                        <span>製作過程</span><br>
-                        <span>Making a story</span>
+                        <p>製作過程</p>
+                        <p>Making a story</p>
                     </div>
                 </div>
             </div>
@@ -170,47 +170,51 @@
         </div>
         <!-- 縫鞋的svg -->
         <div class="sew-img">
-            <!-- <img src="img/sew.svg" alt=""> -->
-            <svg id="hand-line" data-name="hand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1239.26 1816.77">
+            <svg id="sew" data-name="圖層 1" data-inviewport="scale-in" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1239.26 1816.77">
                 <g>
-                    <path class="background-line" d="M671.11,496.47C496.83,559.58,332.74,664.31,353,833c41.78,347.63,470.85-22.09,487.14,183.69C889.2,1636.49.1,1816.28.1,1816.28"/>
-                    <g>
-                        <path class="background-hand" d="M1078.18.28s-23.58,34.78-51.66,39.56-50,41.76-83,53.66-108.64,34.33-111.13,85.83S789.6,266.15,786,284.23s10.27,10.28,13.7,6.85,12.07-43.27,17.69-55.19"/>
-                        <path class="background-hand" d="M839.5,443.12C864.64,415.28,899,375.51,912,361c2.33-2.6,16.17-24.1,34.81-31.22s76.59-63.38,98.65-87.61,5.38-71.64,5.38-71.64"/>
-                        <path class="background-hand" d="M714.2,481.79c7.29,12.62,32.82,24.11,55.3,13.37,0,0,31.92-11.08,56.18-37,4.06-4.34,8.76-9.47,13.82-15.08"/>
-                        <path class="background-hand" d="M780.69,294.23s-11.8,27.66-1,34.1c0,0-35.36,41.9-44.4,50.39s-28.1,59.57-25.51,68.74-.28,15.62,2.59,29.73a15.55,15.55,0,0,0,1.81,4.6"/>
-                        <path class="background-hand" d="M1015.65,477.6s17.38,28.9,61.49,21.53,42.46-2.72,84.38-22.16,57.27-30.93,77.28-75"/>
-                        <path class="background-hand" d="M990.89,76.81s-12.61,19.72-24.66,28.75S949.92,130.62,934.3,144s-58.11,64.07-66.74,69.68-43.16,41.76-50.29,57.37-32.9,52-35.23,54.64"/>
-                        <path class="background-hand" d="M810.63,283.29s-5.56,11.49-10.36,10.81l-1.92-.28"/>
-                        <path class="background-hand" d="M734.74,430.49s17.54-20,29.59-8.48,24.5,40.69,28.47,40.28-17.82,28.76-22.89,30-22.33,12.45-40.95-1S711,466.23,717.75,453.49A108.82,108.82,0,0,1,734.74,430.49Z"/>
-                        <path class="background-hand" d="M919.14,345.38s-27.81,2.86-46.29-11.53-31.62-38.78-31.62-38.78"/>
-                        <path class="background-hand" d="M1049.58,240.79s2.74,8.22-14.12,23.41-19,16.84-19,16.84-5.89-6.71-7.81,6.71-36.72,24.09-67.28,59.83-24.94,17-46.87,47.09c0,0-14.65,6.71-22.06,17.39s-10.55,5.34-19.59,20.67c0,0,13.81,53.84,69.28,55.92s88.48-3,171-73.34c0,0,31.66-29.71,44.81-39.57s8.37-31.09,13.71-41.08"/>
-                        <path class="background-hand" d="M1015.87,284.88s6.29,31.23,10.39,36.71a9.47,9.47,0,0,1,.41,10.82s-9.31-3.29-10-12.19c0,0-4,.41-4.24-11.37,0,0-2.74-1.37-3.42-10.28,0,0-1.91-7.12.28-8.76"/>
-                        <path class="background-hand" d="M1024.34,321.32s-1.09.82-6.71-1"/>
-                        <path class="background-hand" d="M1021.06,310.08l-6.71-1"/>
-                        <path class="background-hand" d="M1010.25,296.79s4.93,6.58,8.62,8.09"/>
-                        <path class="background-hand" d="M699.87,486.05c7-7.22,11.91-12.29,11.91-12.29L711,455l-3.62,2.91s-67.14,72.57-76.87,79c0,0-6.71-1-7.81,6.71s6.16,11.64,9.31,10.14-1.23-5.07,1.78-5.62,13.7-6.84,20.69-14.64c4.8-5.37,30.09-31.55,45.44-47.41"/>
-                        <path class="background-hand" d="M621.55,544.4s-2.6,4.52-3.7,5.34-36.85,25-61.1,30.38c0,0-3.29,2.47,5.61,1.78s56.83-20,67.19-27.94C629.55,554,621.41,552.21,621.55,544.4Z"/>
-                        <path class="background-hand" d="M557,578.2s-12.32-9.59-37.53,2.45-63.43,33-86.86,60c0,0-2.19,1.64-.69,4.79s1,7,7.4,3,15.21-24.24,61-50,44.52-10.25,57.94-8.33,10.83-7.25,7.81-6.71-3.83-.55-3.83-.55"/>
-                        <path class="background-hand" d="M414.81,662.52s18.78-21.78,21.1-17.53-13.43,11.78-30.56,35.74S372.44,767,356,772.48l-3.42-3.43s8.63,1.24,31.67-57.1C400.13,671.73,414.81,662.52,414.81,662.52Z"/>
-                        <path class="background-hand" d="M1016.26,323.09s-5.07,8.08,9.17,11.1l-1.09,7.67s8.62,1.24,4.8-13"/>
-                        <path class="background-hand" d="M1017.9,332.13s-20.33,128.2,27.46,170.27,70.39,20.85,77,22.77.14-7.81-19.32-1.79-105.19-10.18-78.67-181.52V335Z"/>
-                    </g>
+                <path class="sew-line" d="M671.11,496.47C496.83,559.58,332.74,664.31,353,833c41.78,347.63,470.85-22.09,487.14,183.69C889.2,1636.49.1,1816.28.1,1816.28"/>
+                <g>
+                    <path class="finger" d="M1078.18.28s-23.58,34.78-51.66,39.56-50,41.76-83,53.66-108.64,34.33-111.13,85.83S789.6,266.15,786,284.23s10.27,10.28,13.7,6.85,12.07-43.27,17.69-55.19"/>
+                    <path class="finger" d="M839.5,443.12C864.64,415.28,899,375.51,912,361c2.33-2.6,16.17-24.1,34.81-31.22s76.59-63.38,98.65-87.61,5.38-71.64,5.38-71.64"/>
+                    <path class="finger" d="M714.2,481.79c7.29,12.62,32.82,24.11,55.3,13.37,0,0,31.92-11.08,56.18-37,4.06-4.34,8.76-9.47,13.82-15.08"/>
+                    <path class="finger" d="M780.69,294.23s-11.8,27.66-1,34.1c0,0-35.36,41.9-44.4,50.39s-28.1,59.57-25.51,68.74-.28,15.62,2.59,29.73a15.55,15.55,0,0,0,1.81,4.6"/>
+                    <path class="finger" d="M1015.65,477.6s17.38,28.9,61.49,21.53,42.46-2.72,84.38-22.16,57.27-30.93,77.28-75"/>
+                    <path class="finger" d="M990.89,76.81s-12.61,19.72-24.66,28.75S949.92,130.62,934.3,144s-58.11,64.07-66.74,69.68-43.16,41.76-50.29,57.37-32.9,52-35.23,54.64"/>
+                    <path class="finger" d="M810.63,283.29s-5.56,11.49-10.36,10.81l-1.92-.28"/>
+                    <path class="finger" d="M734.74,430.49s17.54-20,29.59-8.48,24.5,40.69,28.47,40.28-17.82,28.76-22.89,30-22.33,12.45-40.95-1S711,466.23,717.75,453.49A108.82,108.82,0,0,1,734.74,430.49Z"/>
+                    <path class="finger" d="M919.14,345.38s-27.81,2.86-46.29-11.53-31.62-38.78-31.62-38.78"/>
+                    <path class="finger" d="M1049.58,240.79s2.74,8.22-14.12,23.41-19,16.84-19,16.84-5.89-6.71-7.81,6.71-36.72,24.09-67.28,59.83-24.94,17-46.87,47.09c0,0-14.65,6.71-22.06,17.39s-10.55,5.34-19.59,20.67c0,0,13.81,53.84,69.28,55.92s88.48-3,171-73.34c0,0,31.66-29.71,44.81-39.57s8.37-31.09,13.71-41.08"/>
+                    <path class="finger" d="M1015.87,284.88s6.29,31.23,10.39,36.71a9.47,9.47,0,0,1,.41,10.82s-9.31-3.29-10-12.19c0,0-4,.41-4.24-11.37,0,0-2.74-1.37-3.42-10.28,0,0-1.91-7.12.28-8.76"/>
+                    <path class="finger" d="M1024.34,321.32s-1.09.82-6.71-1"/>
+                    <path class="finger" d="M1021.06,310.08l-6.71-1"/>
+                    <path class="finger" d="M1010.25,296.79s4.93,6.58,8.62,8.09"/>
+                    <path class="finger" d="M699.87,486.05c7-7.22,11.91-12.29,11.91-12.29L711,455l-3.62,2.91s-67.14,72.57-76.87,79c0,0-6.71-1-7.81,6.71s6.16,11.64,9.31,10.14-1.23-5.07,1.78-5.62,13.7-6.84,20.69-14.64c4.8-5.37,30.09-31.55,45.44-47.41"/>
+                    <path class="finger" d="M621.55,544.4s-2.6,4.52-3.7,5.34-36.85,25-61.1,30.38c0,0-3.29,2.47,5.61,1.78s56.83-20,67.19-27.94C629.55,554,621.41,552.21,621.55,544.4Z"/>
+                    <path class="finger" d="M557,578.2s-12.32-9.59-37.53,2.45-63.43,33-86.86,60c0,0-2.19,1.64-.69,4.79s1,7,7.4,3,15.21-24.24,61-50,44.52-10.25,57.94-8.33,10.83-7.25,7.81-6.71-3.83-.55-3.83-.55"/>
+                    <path class="finger" d="M414.81,662.52s18.78-21.78,21.1-17.53-13.43,11.78-30.56,35.74S372.44,767,356,772.48l-3.42-3.43s8.63,1.24,31.67-57.1C400.13,671.73,414.81,662.52,414.81,662.52Z"/>
+                    <path class="finger" d="M1016.26,323.09s-5.07,8.08,9.17,11.1l-1.09,7.67s8.62,1.24,4.8-13"/>
+                    <path class="finger" d="M1017.9,332.13s-20.33,128.2,27.46,170.27,70.39,20.85,77,22.77.14-7.81-19.32-1.79-105.19-10.18-78.67-181.52V335Z"/>
+                </g>
                 </g>
             </svg>
         </div>
     </div>
     <!-- 影片 -->
     <div class="shoes-video">
-        <img src="https://dummyimage.com/1161x658" alt="">
-        <!-- <img src="img/Leather knife.svg" alt=""> -->
-        <img src="https://dummyimage.com/567x707" alt="">
-        <svg id="knife" data-name="knife" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 918.56 829.41">
+        <video controls muted autoplay loop>
+            <source src="./img/shoes-video1.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video controls muted autoplay loop>
+            <source src="./img/shoes-video2.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <svg id="leather-knife" data-name="圖層 1" data-inviewport="scale-in"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 918.56 829.41">
             <g>
-                <path class="knife-line" d="M481.83,547.14,772.72,828.67,917.87,649.48,697.23,458.75s-58-43.32-132.51-6.63L110.59.8S91.06-7.89,18.77,69c0,0-24,21.62-17,50.89l470,428.19S474.43,553.05,481.83,547.14Z"/>
-                <line class="knife-line" x1="483.63" y1="543.24" x2="556.68" y2="458.84"/>
-                <path class="knife-line" d="M399.67,476.12s76.31-80.21,82.38-92.73"/>
-            </g>
+            <path class="knife" d="M481.83,547.14,772.72,828.67,917.87,649.48,697.23,458.75s-58-43.32-132.51-6.63L110.59.8S91.06-7.89,18.77,69c0,0-24,21.62-17,50.89l470,428.19S474.43,553.05,481.83,547.14Z"/>
+            <line class="cls-1" x1="483.63" y1="543.24" x2="556.68" y2="458.84"/>
+            <path class="grip" d="M399.67,476.12s76.31-80.21,82.38-92.73"/>
+          </g>
         </svg>
     </div>
     <!-- 新品上市 -->
@@ -247,29 +251,30 @@
                 <a href="{{ asset('front/product/') }}" class="more-product">更多商品</a>
             </div>
         </div>
-        <div class="parallelogram"></div>
+        <div class="parallelogram" id="move"></div>
     </div>
     <!-- 照片牆 -->
     <div class="photo-wall">
         <div class="photo-title">
             <div class="text">
-                <span>#30leather</span>
-                <span>Share the quality of life you like X Meet each other with similar good sense.</span>
+                <p>#30leather</p>
+                <p>Share the quality of life you like X Meet each other with similar good sense.</p>
+
             </div>
         </div>
         <!-- Swiper -->
         <div class="swiper2">
             <div class="swiper-container mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
-                    <div class="swiper-slide">Slide 4</div>
-                    <div class="swiper-slide">Slide 5</div>
-                    <div class="swiper-slide">Slide 6</div>
-                    <div class="swiper-slide">Slide 7</div>
-                    <div class="swiper-slide">Slide 8</div>
-                    <div class="swiper-slide">Slide 9</div>
+                    <div class="swiper-slide" style="background-image: url(img/model-1.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-2.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-3.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-4.jpg)"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-5.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-6.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-7.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-8.jpg);"></div>
+                    <div class="swiper-slide" style="background-image: url(img/model-9.jpg);"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -282,56 +287,65 @@
 
     </div>
     <!-- 試穿資訊 -->
-    <div class="studio-information d-flex">
-        <div class="studio-photo col-md-5">
-            <img src={{ asset('img/studio-photo.jpg') }}>
-        </div>
-
-        <div class="col-md-9 mt-5">
-            <div class="col-md-12 d-flex">
-                <div class="try-on-infor col-md-2">
-                    <ul class="list-unstyled">
-                        <li class="try-on">試穿</li>
-
-                        <li class="detail">Details</li>
-
-                        <li class="infor">資訊</li>
-                    </ul>
-                </div>
-
-                <div class="contact-head mt-1 col-md-3">
-                    <ul class="list-unstyled pl-4">
-                        <li>電話</li>
-
-                        <li class="mt-4">營業時間</li>
-
-                        <li class="mt-4">地址</li>
-
-                        <li class="mt-4">注意</li>
-                    </ul>
-                </div>
-
-                <div class="contact-text mt-1 col-md-6">
-                    <ul class="list-unstyled">
-                        <li class="phone mt-0">02 - 27751930</li>
-
-                        <li class="business-time mt-4">週一至週六 1400 - 2000</li>
-
-                        <li>週日 1400 - 1800</li>
-
-                        <li class="address mt-2">臺北市大安區忠孝東路四段142號9樓</li>
-
-                        <li>出電梯左邊第3間904室(才是三十革工作室)</li>
-
-                        <li class="note mt-2">不是電梯對面第一間 x 不要走錯 x 不要買錯</li>
-                    </ul>
-                </div>
+    <div class="studio-information">
+        <div class="studio-photo col-xl-5">
+            <div class="photo">
+                <img src={{ asset('img/studio-photo.jpg') }}>
+                <div class="studio-photo-close">X</div>
             </div>
 
-            <div class="shop-map mt-4 " data-aos="fade-down">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7867787660603!2d121.5472019150064!3d25.041309083968848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abda8f963d3f%3A0xce8d3baae8551e2b!2z5LiJ5Y2B6Z2p!5e0!3m2!1szh-TW!2stw!4v1625462398880!5m2!1szh-TW!2stw"
-                    width="864" height="432" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="studio-information-content col-xl-7 mt-5">
+            <div class="try-container col-md-12">
+                <div class="try-on-infor">
+                    <div class="list-unstyled">
+                        試穿
+                        <p class="detail">Details</p>
+                        資訊
+                    </div>
+                </div>
+                <div class="try-content">
+                    <div class="contact-head mt-1">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="list-unstyled-title">電話</div>
+                                <div class="list-unstyled-text">02 - 27751930</div>
+                            </li>
+                            <li>
+                                <div class="list-unstyled-title">營業時間</div>
+                                <div class="list-unstyled-text">
+                                    <p>週一至週六 1400 - 2000</p>
+                                    <p>週日 1400 - 1800</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list-unstyled-title"> 地址</div>
+                                <div class="list-unstyled-text">
+                                    <p>臺北市大安區忠孝東路四段142號9樓</p>
+                                    <p>出電梯左邊第3間904室(才是三十革工作室)</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list-unstyled-title">注意</div>
+                                <div class="list-unstyled-text">不是電梯對面第一間 x 不要走錯 x 不要買錯</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="photo-button">
+                        <div class="text">
+                            <p>工作室</p>
+                            <p>門口照</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="shop-map" data-aos="fade-down">
+                <div class="shop-map-content">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7867787660603!2d121.5472019150064!3d25.041309083968848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abda8f963d3f%3A0xce8d3baae8551e2b!2z5LiJ5Y2B6Z2p!5e0!3m2!1szh-TW!2stw!4v1625462398880!5m2!1szh-TW!2stw"
+                        width="864" height="432" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </div>

@@ -776,6 +776,7 @@ main .main-container .my-container .shopping-container .message-and-button .go-h
 }
 
 main .main-container .my-container .shopping-container .message-and-button .go-home-button .home-button {
+  cursor: pointer;
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -784,5 +785,15 @@ main .main-container .my-container .shopping-container .message-and-button .go-h
   color: #ffffff;
   font-size: 30px;
   letter-spacing: 3.2px;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=shopping-step3.css.map */

@@ -22,7 +22,8 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar">
+        {{-- <a href={{ asset('/front') }}></a> --}}
         <img class="logo" src={{ asset('img/30leather_logo.svg') }} alt="">
         <nav class="navbar navbar-expand-custom navbar-light">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +95,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">購鞋怎麼選</a>
                     <a class="dropdown-item" href="#">系列鞋款介紹</a>
-                    <a class="dropdown-item" href="#">製成故事</a>
+                    <a class="dropdown-item" href={{ asset('/front/shose') }}>製成故事</a>
                   </div>
                   <a class="dropdown-item" href="#">試穿服務</a>
                 </div>
@@ -111,7 +112,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">購鞋怎麼選</a>
                   <a class="dropdown-item" href="#">系列鞋款介紹</a>
-                  <a class="dropdown-item" href="#">製成故事</a>
+                  <a class="dropdown-item" href="{{ asset('/front/shose') }}">製成故事</a>
                 </div>
               </li>
               <!-- 試穿服務 -->
@@ -131,13 +132,21 @@
         </nav>
         <div class="personal-item">
           <div class="input-cart d-flex">
-            <form class="search d-flex my-2 my-lg-0">
+            <form class="search d-flex my-2">
                 <input id="search-input" class=" search-input mr-sm-2" type="search" placeholder="尋找商品...">
                 <label for="search-input"><i class="fas fa-search mr-2"></i></label>
             </form>
-            <a href={{ asset('/front/user') }}><i class="fas fa-user m-2"></i></a>
+            @guest
+                <a href={{ asset('/front/login') }}><i class="fas fa-user m-2"></i></a>
+            @else
+                <a href={{ asset('/front/user') }}><i class="fas fa-user m-2" style="color:#000"></i></a>
+            @endguest
             <div class="cart">
-                <a href={{ asset('/front/shoppingstep1') }}><i class="fas fa-shopping-cart m-2"></i></a>
+                @guest
+                    <a href={{ asset('/front/login') }}><i class="fas fa-shopping-cart m-2"></i></a>
+                @else
+                    <a href={{ asset('/front/shoppingstep1') }}><i class="fas fa-shopping-cart m-2"></i></a>
+                @endguest
                 <div class="cart-number">1</div>
             </div>
           </div>
