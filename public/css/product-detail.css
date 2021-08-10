@@ -762,7 +762,7 @@ main .main-container .product-container .productshop-container .commidity-contai
 }
 
 main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-color .color-title span:nth-child(2) {
-  font-size: 12px;
+  font-size: 14px;
   color: #7b8ca2;
   letter-spacing: 1.6px;
 }
@@ -840,7 +840,6 @@ main .main-container .product-container .productshop-container .commidity-contai
 
 main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title span:nth-child(2) {
   font-size: 14px;
-  font-weight: bold;
   color: #7b8ca2;
   margin-right: 5px;
 }
