@@ -35,7 +35,7 @@
                                 <th>product_nickname</th>
                                 <th>price</th>
                                 <th>Main_photo</th>
-                                <th>color</th>
+                                {{-- <th>color</th> --}}
                                 <th>Operating</th>
                             </tr>
                         </thead>
@@ -54,11 +54,11 @@
                                             <img style="width:50px" src="{{ asset($img->photos) }}">
                                         @endforeach
                                     </td> --}}
-                                    <td>
+                                    {{-- <td>
                                         @foreach ($item->color as $color)
                                             <div class="colors" style="background:{{ $color }};"></div>,
                                         @endforeach
-                                    </td>
+                                    </td> --}}
                                     <td class="d-flex">
                                         <a href="{{ asset('/admin/product/edit') }}/{{ $item->id }}" class="btn btn-primary">編輯</a>
                                         <form style="display:inline-block;" action="/admin/product/delete/{{ $item->id }}" method="POST">
@@ -77,7 +77,7 @@
                                 <th>product_nickname</th>
                                 <th>price</th>
                                 <th>Main_photo</th>
-                                <th>color</th>
+                                {{-- <th>color</th> --}}
                                 <th>Operating</th>
                             </tr>
                         </tfoot>

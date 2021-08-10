@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\ColorImg;
+use App\FollowList;
 use App\User;
 use App\Order;
 use App\Product;
 use App\OrderDetail;
 use App\ProductType;
+use App\TypeClass;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Faker\Provider\zh_TW\DateTime;
@@ -27,6 +30,7 @@ class FrontController extends Controller
         //user
         $this->user_index = 'front.user.index';
         $this->user_password_modify = 'front.user.password-modify';
+        $this->user_follow_list = 'front.user.follow-list';
         //login
         $this->login = 'front.login.index';
         //shose
@@ -50,23 +54,21 @@ class FrontController extends Controller
     public function ShoppingStep1(){
         $list = \Cart::getContent()->sortKeys();
         $product_type = ProductType::find(13);
-        $colors = Product::COLOR;
         $sizes = Product::SIZE;
-        return view($this->step1,compact('list','colors','sizes','product_type'));
+        return view($this->step1,compact('list','sizes','product_type'));
     }
 
     public function ShoppingStep2(){
         $Calc_All = $this->CartCalc();
         $list = \Cart::getContent()->sortKeys();
-        $colors = Product::COLOR;
         $sizes = Product::SIZE;
-        // dd(Auth::user()->id);
-        return view($this->step2,compact('Calc_All','colors','sizes','list'));
+        return view($this->step2,compact('Calc_All','sizes','list'));
     }
     public function Step2_Check(Request $req){
         Session::put('receive-name', $req->receive_name);
         Session::put('receive-phone', $req->receive_phone);
         Session::put('date',date('Y-m-d h:i:s a', time()));
+        Session::put('now_date',date('Y-m-d', time()));
 
         $cartProduct = \Cart::getContent();
         $order = Order::create([
@@ -82,11 +84,22 @@ class FrontController extends Controller
             'shipping_fee' => 99999999,
             'shipping_status_id' => 0,
             'order_status_id' => 0,
-            'remark' => $req->remark
+            'remark' => $req->remark,
+            'date' => Session::get('now_date')
         ]);
         $countPoint = 0;
         foreach($cartProduct as $cart){
             $product = Product::find($cart->id);
+            if($product->product_quantity <= 0){
+                Order::where('id',$order->id)->delete();
+                OrderDetail::where('order_id',$order->id)->delete();
+                \Cart::remove($cart->id);
+                return redirect('/front/product')->with('message','此商品 ['.$product->product_name.'] 剛剛已售完');
+            }
+            $quantity = $product->product_quantity - $cart->quantity;
+            $product->update([
+                'product_quantity' => $quantity
+            ]);
             $countPoint += $this->Calculation($product->price,$product->discount) * $cart->quantity;
 
             OrderDetail::create([
@@ -95,7 +108,7 @@ class FrontController extends Controller
                 'quantity' => $cart->quantity,
                 'old' => json_encode($product),
                 'size' => json_encode($cart->attributes->size),
-                'color' => json_encode($cart->attributes->color),
+                'color' => $cart->attributes->color,
             ]);
         }
         $order->update([
@@ -117,27 +130,51 @@ class FrontController extends Controller
         $receive_name = Session::get('receive-name');
         $receive_phone = Session::get('receive-phone');
         $date = Session::get('date');
-        $colors = Product::COLOR;
+
         $sizes = Product::SIZE;
-        return view($this->step3,compact('order','receive_name','receive_phone','receive_phone','colors','sizes','date'));
+        return view($this->step3,compact('order','receive_name','receive_phone','receive_phone','sizes','date'));
     }
 
-    public function product_index(){
-        $products = Product::get();
-        return view($this->product_index,compact('products'));
+    public function product_index(Request $req){
+        if($req->type_id){
+            $products = Product::where('product_type_id',$req->type_id)->get();
+        }else{
+            $products = Product::get();
+        }
+        $class = TypeClass::get();
+        return view($this->product_index,compact('products','class'));
     }
-    public function product_detail($id){
+    public function product_detail(Request $req,$id){
+        $color_photo = 0;
+        if($req->color_id){
+            $color_photo = Product::find($id)->colors()->where('product_id',$id)->where('color_id',$req->color_id)->first();
+            // dd($color_photo);
+            $judgment = false;
+        }else{
+            $judgment = true;
+        }
         $product = Product::find($id);
         $list = Product::get();
-        return view($this->product_detail,compact('product','list'));
+        $sizes = Product::SIZE;
+        return view($this->product_detail,compact('product','list','sizes','judgment','color_photo'));
     }
+    // public function product_detail_color(Request $req){
+
+    //     $product = Product::find($req->productId);
+    //     $list = Product::get();
+    //     $sizes = Product::SIZE;
+    //     return view($this->product_detail,compact('product','list','sizes','judgment'));
+    // }
 
     public function add(Request $req){
         $product = Product::find($req->productId);
         $price = $this->Calculation($product->price,$product->discount);
         $quantity = $req->quantity;
+        if(!$req->size || !$req->color){
+            return 'error';
+        }
         \Cart::add(array(
-            'id' => $product->id, // inique row ID
+            'id' => $product->id,
             'name' => $product->product_name,
             'price' => $price,
             'quantity' => $quantity,
@@ -146,6 +183,7 @@ class FrontController extends Controller
                 'nickname' => $product->product_nickname,
                 'size' => $req->size,
                 'color' => $req->color,
+                'colorId' => $req->color_id,
                 'discount' => $product->discount
             )
         ));
@@ -187,7 +225,7 @@ class FrontController extends Controller
         $address = $req->county.''.$req->district.''.$req->address;
         if($req->date){
             User::where('id',Auth::user()->id)->update([
-                'date' => date("Y-m-d")
+                'date' => $req->date,
             ]);
         }
         User::where('id',Auth::user()->id)->update([
@@ -211,7 +249,54 @@ class FrontController extends Controller
         ]);
         return redirect('/front/user/passwordModify')->with('message','密碼更改成功');
     }
+    public function user_addFollow(Request $req){
+        $productId = Product::find($req->productId);
+        $cart = \Cart::get($req->cartId);
+        $color_img = ColorImg::where('color_id',$cart->attributes->colorId)->first();
+        $follow = FollowList::where('user_id',Auth::user()->id)
+                            ->where('product_id',$productId->id)
+                            ->where('color_id',$cart->attributes->colorId)->first();
 
+        if($follow){
+            dd('123');
+            return 'error';
+        }else{
+            FollowList::create([
+                'user_id' => Auth::user()->id,
+                'product_id' => $productId->id,
+                'color_id' => $cart->attributes->colorId,
+                'name' => $productId->product_name,
+                'nickname' => $productId->product_nickname,
+                'price' => $productId->price,
+                'discount' => $productId->discount,
+                'color' => $cart->attributes->color,
+                'size' => $cart->attributes->size,
+                'photo' => $color_img->photos
+            ]);
+            return 'success';
+        }
+
+    }
+    public function user_deleteFollow(Request $req){//從購物車刪除
+        $productId = Product::find($req->productId);
+        $cart = \Cart::get($req->cartId);
+        FollowList::where('user_id',Auth::user()->id)
+                    ->where('product_id',$productId->id)
+                    ->where('color_id',$cart->attributes->colorId)->delete();
+        return 'success';
+    }
+    public function delete_Follow($id){//從會員的追蹤清單刪除
+        $followId = FollowList::find($id);
+        FollowList::where('user_id',Auth::user()->id)
+                    ->where('product_id',$followId->product_id)
+                    ->where('color_id',$followId->color_id)->delete();
+        return redirect('/front/user/follow')->with('message','成功刪除追蹤清單');
+    }
+    public function user_follow(){
+        $list = FollowList::where('user_id',Auth::user()->id)->get();
+        $product = Product::get();
+        return view($this->user_follow_list,compact('list'));
+    }
 
     //login
     public function login(){

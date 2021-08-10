@@ -88,47 +88,6 @@ function wheelslide(e)
 }
 
 
-//navbar
-//When the user scrolls the page, execute myFunction
-window.onscroll = function() {myFunction()};
-// Get the navbar
-var navbar = document.getElementById("navbar");
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop;
-//取得banner的高度
-var bannerHeight = document.querySelector('.swiper-container').offsetHeight;
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-let shortLine = document.querySelector('.short-line');
-let longLine = document.querySelector('.long-line');
-function myFunction() {
-  if (window.pageYOffset >= bannerHeight) {
-    navbar.classList.add("sticky");
-    longLine.className="long-line";
-    shortLine.className="short-line";
-  } else {
-    navbar.classList.remove("sticky");
-    longLine.className="";
-    shortLine.className="";
-  }
-}
-//slide in on scroll
-// window.onscroll = function() {myFunction()};
-// let shortLine = document.querySelector('.short-line');
-// let longLine = document.querySelector('.long-line');
-
-
-// window.onscroll = function() {myFunction()};
-
-// function myFunction() {
-//   if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-//     longLine.className="long-line";
-//     shortLine.className="short-line";
-//   } else {
-//     longLine.className="";
-//     shortLine.className="";
-//   }
-// }
-
 //試穿資訊按鈕操控
 let photo_Button = document.querySelector('.photo-button');
 let closes = document.querySelector('.studio-photo-close');
@@ -142,17 +101,24 @@ photo_Button.addEventListener('click',function(){
   studio_Photo.classList.add('active');
 });
 
-
+//視窗滾動監聽
 const inViewport = (entries, observer) => {
-  entries.forEach(entry => {
-      entry.target.classList.toggle("is-inViewport", entry.isIntersecting);
-  });
+    entries.forEach(entry => {
+        entry.target.classList.toggle("is-inViewport", entry.isIntersecting);
+    });
 };
 
 const Obs = new IntersectionObserver(inViewport);
-const obsOptions = {};
+const obsOptions = {}
 // Attach observer to every [data-inviewport] element:
 const ELs_inViewport = document.querySelectorAll('[data-inviewport]');
 ELs_inViewport.forEach(EL => {
-  Obs.observe(EL, obsOptions);
+    Obs.observe(EL, obsOptions);
 });
+
+//回到上層按鈕
+let anchor = document.querySelector('.a-anchor');
+console.log(anchor);
+anchor.addEventListener('click',function(){
+  window.scrollTo(0, top);
+})

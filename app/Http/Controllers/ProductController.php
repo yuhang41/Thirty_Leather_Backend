@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Color;
 use App\Product;
 use App\ProductType;
+use App\ColorProduct;
 use App\ProductOtherImg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -24,10 +26,11 @@ class ProductController extends Controller
     public function create(){
         $type = ProductType::get();
         $sizes = Product::SIZE;
-        $color = Product::COLOR;
+        $color = Color::get();
         return view($this->create,compact('type','sizes','color'));
     }
     public function store(Request $req){
+        dd($req->all());
         $req_all = $req->all();
         // dd($req_all);
         if($req->hasFile('photo')){
@@ -44,16 +47,32 @@ class ProductController extends Controller
                 ]);
             };
         }
+        foreach($req->color_id as $item){
+            ColorProduct::create([
+                'product_id' => $create->id,
+                'color_id' => $item,
+            ]);
+        };
         return redirect('/admin/product')->with('msg','新增成功');
     }
     public function edit($id){
         $type = ProductType::get();
         $edit = Product::find($id);
         $sizes = Product::SIZE;
-        $color = Product::COLOR;
+        $color = Color::get();
         return view($this->edit,compact('type','edit','sizes','color'));
     }
     public function update(Request $req,$id){
+
+        if($req->color_id){
+            ColorProduct::where('product_id',$id)->delete();
+            foreach($req->color_id as $item){
+                ColorProduct::create([
+                    'product_id' => $id,
+                    'color_id' => $item
+                ]);
+            }
+        }
         $old_record = Product::find($id);
         if($req->hasFile('photo')){
             File::delete(public_path(), $old_record->photo);
@@ -77,7 +96,6 @@ class ProductController extends Controller
             'discount' => $req->discount,
             'product_quantity' => $req->product_quantity,
             'size' => $req->size,
-            'color' => $req->color,
             'content' => $req->content,
         ]);
         return redirect('/admin/product')->with('msg','更新成功');
@@ -90,6 +108,7 @@ class ProductController extends Controller
         }
         File::delete(public_path(),$main_photo->photo);
         $main_photo->delete();
+        ColorProduct::where('product_id',$id)->delete();
         ProductOtherImg::where('product_id',$id)->delete();
         return redirect('/admin/product')->with('msg','刪除成功');
     }

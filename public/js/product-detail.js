@@ -114,11 +114,13 @@ function updateQty(element,number){
   var input = qtyArea.querySelector('input');
   var qty = Number(input.value);
   var newQty = qty + number;
-  if(newQty < 1){
+  if(newQty > input.max){
+    input.value = input.max;
+  }else if(newQty < 1){
     input.value = 1;
   }else{
     input.value= newQty;
-}
+  }
 }
 
 //加法計算
@@ -135,38 +137,123 @@ minusBtns.forEach(function(minusBtn){
         updateQty(this,-1);
     });
 });
+
+//size-key
+let size_key = document.querySelector('.size-key');
+let size_radios = document.querySelectorAll('.size-checkbox');
+size_radios.forEach(radio=>{
+  radio.addEventListener('click',()=>{
+    size_key.textContent = radio.checked ? radio.dataset.key : 0;
+  })
+});
+
 //fetch
 let putcart = document.querySelector('.putcart');
 let colorCheckboxs = document.querySelectorAll(".color-checkbox");
 let sizeCheckboxs = document.querySelectorAll('.size-checkbox');
+//購物車按鈕效果
+let check = document.querySelector('.fa-check');
+let orderBuy = document.querySelector('.order-buy')
+let cartText = window.getComputedStyle(orderBuy,'::after');
+let min = true;
+
 putcart.addEventListener('click',function(){
     let productId = putcart.dataset.id;
     let quantity = document.querySelector('#quantity');
     let csrf_token =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     let formData =new FormData();
-    colorCheckboxs.forEach(checkbox =>{
-        if(checkbox.checked){
-            formData.append('color[]',checkbox.value);
-        }
-    });
-    sizeCheckboxs.forEach(checkbox =>{
-        if(checkbox.checked){
-            formData.append('size[]',checkbox.value);
-        }
-    });
-    formData.append('_token',csrf_token);
-    formData.append('productId',productId);
-    formData.append('quantity',quantity.value);
-    fetch('/front/product/add',{
-        'method' : 'post',
-        'body' : formData
-    }).then(rep=>{
-        return rep.text();
-    }).then(result=>{
-        if(result == 'success'){
-            console.log(result);
-            alert('已加入購物車');
-        }
-    })
+    if(min){
+        colorCheckboxs.forEach(checkbox =>{
+            if(checkbox.checked){
+                formData.append('color',checkbox.value);
+                formData.append('color_id',checkbox.dataset.id);
+            }
+        });
+        sizeCheckboxs.forEach(checkbox =>{
+            if(checkbox.checked){
+                formData.append('size',checkbox.value);
+            }
+        });
+        formData.append('_token',csrf_token);
+        formData.append('productId',productId);
+        formData.append('quantity',quantity.value);
+        fetch('/front/product/add',{
+            'method' : 'post',
+            'body' : formData
+        }).then(rep=>{
+            return rep.text();
+        }).then(result=>{
+            if(result == 'success'){
+                min = false;
+                putcart.firstChild.data='';
+                clickButtonEffect();
+            }else{
+                alert('請選擇顏色或size');
+            }
+        })
+    }
 });
+function clickButtonEffect(){
+    cartClick();
+    let promise = new Promise((resolve)=>{
+      window.setTimeout(function(){
+        cartUnclick();
+        return resolve();
+      },500)
+    })
+
+    promise.then(()=>{
+      window.setTimeout(function(){
+        cartDelete();
+      },250)
+    });
+}
+function cartClick(){
+    everyStyle('','block','#6ba2f2','active');
+};
+
+function cartUnclick(){
+    if( orderBuy.className == 'order-buy active'){
+        everyStyle('加入購物車','none','unset','active2');
+    }
+};
+function cartDelete(){
+    console.log('刪除');
+    orderBuy.classList.remove('active');
+    orderBuy.classList.remove('active2');
+    min = true;
+}
+
+function everyStyle(data,display,background,className){
+    putcart.firstChild.data = data;
+    check.style.display = display ;
+    putcart.style.background = background;
+    orderBuy.classList.add( className );
+}
+
+//When the user scrolls the page, execute myFunction
+window.onscroll = function(){myFunction()};
+//取得螢幕的高度
+var  screenHeight = screen.height;
+
+let backTopBtn = document.querySelector('.back-top');
+let commodityOpt = document.querySelector('.all-commodity');
+function myFunction() {
+  if(window.pageYOffset >= screenHeight/2){
+    commodityOpt.classList.add("sticky");
+  }else{
+    commodityOpt.classList.remove("sticky");
+  }
+  if (window.pageYOffset >= screenHeight) {
+    backTopBtn.classList.add("sticky");
+  } else {
+    backTopBtn.classList.remove("sticky");
+  }
+}
+//回到上層按鈕
+let anchor = document.querySelector('.a-anchor');
+console.log(anchor);
+anchor.addEventListener('click',function(){
+  window.scrollTo(0, top);
+})
 

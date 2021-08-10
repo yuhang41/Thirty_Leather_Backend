@@ -8,6 +8,55 @@
   margin: 0px;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 1024px) {
+  .navbar .navbar-collapse {
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .navbar .navbar-collapse {
+    width: 400px;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar .navbar-collapse {
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .navbar .navbar-collapse {
+    width: 100vw;
+  }
+}
+
+.navbar li:nth-child(n+5) {
+  display: none;
+}
+
+.navbar li:nth-child(6) {
+  display: block;
+}
+
+#navbar {
+  position: relative;
+}
+
+#navbar:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+  opacity: 0.7;
+}
+
+nav .input-cart .search input {
+  background-color: transparent !important;
 }
 
 main .main-container {
@@ -21,12 +70,64 @@ main .main-container .commodity-menu {
   max-width: 375px;
   width: 100%;
   padding-top: 100px;
+  position: relative;
+}
+
+main .main-container .commodity-menu:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+  opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+  main .main-container .commodity-menu {
+    display: none;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 main .main-container .commodity-menu .all-commodity {
   max-width: 200px;
   margin: auto;
   width: 100%;
+}
+
+main .main-container .commodity-menu .all-commodity.sticky {
+  position: fixed;
+  top: 10px;
+  left: 90px;
+  width: 100%;
+  -webkit-animation: smoothScroll 1s forwards;
+          animation: smoothScroll 1s forwards;
+}
+
+@-webkit-keyframes smoothScroll {
+  0% {
+    -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes smoothScroll {
+  0% {
+    -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
 }
 
 main .main-container .commodity-menu .all-commodity .commodity-menu-title {
@@ -43,19 +144,19 @@ main .main-container .commodity-menu .all-commodity .commodity-menu-title.AllCom
   font-weight: 600;
 }
 
-main .main-container .commodity-menu .all-commodity .commodity-menu-title.AllCommodity.active::after {
+main .main-container .commodity-menu .all-commodity .commodity-menu-title.AllCommodity.collapsed::after {
+  content: '\f078';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+}
+
+main .main-container .commodity-menu .all-commodity .commodity-menu-title.Snowshoe.collapsed::after {
   content: '\f078';
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
 }
 
 main .main-container .commodity-menu .all-commodity .commodity-menu-title.Snowshoe::after {
-  content: '\f078';
-  font-family: "Font Awesome 5 Free";
-  font-weight: 600;
-}
-
-main .main-container .commodity-menu .all-commodity .commodity-menu-title.Snowshoe.active::after {
   content: '\f077';
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
@@ -85,10 +186,31 @@ main .main-container .commodity-menu .all-commodity .commodity-other {
 main .main-container .product-container {
   max-width: calc(100% - 375px);
   width: 100%;
-  background: #ebeae5;
+  position: relative;
   padding-top: 85px;
-  padding-right: 11.5vw;
   padding-left: 2.6vw;
+}
+
+main .main-container .product-container:before {
+  background-color: #ededeb;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+  opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+  main .main-container .product-container {
+    max-width: unset;
+    padding: 85px 2.6vw 0px 2.6vw;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 main .main-container .product-container .product-container-title {
@@ -122,24 +244,62 @@ main .main-container .product-container .product-container-title .product-contai
 }
 
 main .main-container .product-container .product-container-card {
+  max-width: 1293px;
   width: 100%;
-  padding-left: 5.5vw;
-  padding-top: 100px;
+  margin-right: auto;
+  padding-left: 6.9%;
+  padding-right: 3.9%;
+  padding-top: 120px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-main .main-container .product-container .product-container-card .product-card {
-  width: 275px;
+@media (max-width: 1024px) {
+  main .main-container .product-container .product-container-card {
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+}
+
+@media (max-width: 575px) {
+  main .main-container .product-container .product-container-card .product-card-spacing {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 60%;
+            flex: 0 0 60%;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card {
+  padding: 0 10px;
+  max-width: 275px;
+  min-width: 230px;
+  width: 100%;
   height: 275px;
   background-color: #ffffffcc;
   margin-bottom: 150px;
@@ -161,10 +321,10 @@ main .main-container .product-container .product-container-card .product-card {
   z-index: 2;
 }
 
-main .main-container .product-container .product-container-card .product-card img {
+main .main-container .product-container .product-container-card .product-card-spacing .product-card img {
   position: absolute;
   width: 215px;
-  max-height: 165px;
+  max-height: 160px;
   bottom: 90%;
   left: 50%;
   -o-object-position: center;
@@ -173,47 +333,87 @@ main .main-container .product-container .product-container-card .product-card im
           transform: translate(-50%, 0);
 }
 
-main .main-container .product-container .product-container-card .product-card .content .text p {
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content {
+  height: 166px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .text {
+  padding: 0px 5px;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .text p {
   margin: 0px;
 }
 
-main .main-container .product-container .product-container-card .product-card .content .text p:nth-child(1) {
-  font-size: 21px;
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .text p:nth-child(1) {
+  font-size: 18px;
   font-weight: lighter;
   letter-spacing: 1.6px;
   color: #444444;
-  margin-bottom: 10px;
 }
 
-main .main-container .product-container .product-container-card .product-card .content .text p:nth-child(2) {
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .text p:nth-child(2) {
   font-size: 16px;
   font-weight: normal;
   letter-spacing: 1.6px;
   color: #444444;
-  margin-bottom: 30px;
 }
 
-main .main-container .product-container .product-container-card .product-card .content .price span:nth-child(1) {
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .price {
+  height: 40%;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .price span:nth-child(1) {
   font-size: 15px;
   font-weight: lighter;
   color: #666666;
   text-decoration: line-through;
 }
 
-main .main-container .product-container .product-container-card .product-card .content .price span:nth-child(2) {
+main .main-container .product-container .product-container-card .product-card-spacing .product-card .content .price span:nth-child(2) {
   font-size: 30px;
   font-weight: bold;
-  color: #f7a269;
+  color: #70b9cf;
 }
 
-main .main-container .product-container .product-container-card .product-card a {
-  width: 235px;
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a {
+  max-width: 200px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a:hover {
+  text-decoration: none;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button {
+  width: 100%;
   height: 50px;
   color: #444444;
   background-color: unset;
   border: 2px solid #a0a0a0;
   border-radius: 45px;
-  margin: 30px 0px 10px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -223,6 +423,118 @@ main .main-container .product-container .product-container-card .product-card a 
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: color 300ms;
+  transition: color 300ms;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition-property: transform;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition: 300ms ease-in-out;
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+}
+
+@-webkit-keyframes colorFade {
+  0% {
+    background: rgba(247, 162, 105, 0.25);
+  }
+  100% {
+    background: #f7a269;
+  }
+}
+
+@keyframes colorFade {
+  0% {
+    background: rgba(247, 162, 105, 0.25);
+  }
+  100% {
+    background: #f7a269;
+  }
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:focus:before {
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  -webkit-animation: colorFade 1s ease-in-out;
+          animation: colorFade 1s ease-in-out;
+  background: #f5853b;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:focus {
+  color: #ffffff;
+  border: none;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:focus:after {
+  display: none;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button, main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:after {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button::after {
+  background: #f7a269;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  left: -35%;
+  top: 0;
+  -webkit-transform: skew(5deg);
+          transform: skew(5deg);
+  -webkit-transition-duration: 0.6s;
+          transition-duration: 0.6s;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  width: 0;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:hover:after {
+  width: 135%;
+}
+
+main .main-container .product-container .product-container-card .product-card-spacing .product-card a button:hover {
+  color: #ffffff;
+  border: none;
+}
+
+@media (max-width: 575px) {
+  main .main-container .product-container .product-container-card .product-card-spacing .product-card {
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  main .main-container .product-container .product-container-card .product-card-spacing .product-card:nth-child(n+5) {
+    display: none;
+  }
+}
+
+main .main-container .product-container .null-product {
+  width: 100%;
+  text-align: center;
+  padding: 100px 0;
 }
 
 main .main-container .product-container .pagination {
@@ -261,5 +573,102 @@ main .main-container .product-container .pagination ul li a {
 
 main .main-container .product-container .pagination ul li .page-number {
   font-size: 21px;
+}
+
+main .main-container .back-top {
+  display: none;
+}
+
+main .main-container .back-top.sticky {
+  display: block;
+  position: fixed;
+  bottom: 92px;
+  right: 40px;
+  z-index: 5;
+  opacity: 0.3;
+  -webkit-animation: top-move-in .3s ease-in-out;
+          animation: top-move-in .3s ease-in-out;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+@-webkit-keyframes top-move-in {
+  0% {
+    bottom: 95px;
+    opacity: 0;
+  }
+  100% {
+    bottom: 92px;
+    opacity: 0.3;
+  }
+}
+
+@keyframes top-move-in {
+  0% {
+    bottom: 95px;
+    opacity: 0;
+  }
+  100% {
+    bottom: 92px;
+    opacity: 0.3;
+  }
+}
+
+main .main-container .back-top.sticky:hover {
+  opacity: 0.3;
+  -webkit-animation: top-move .7s ease-in-out;
+          animation: top-move .7s ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes top-move {
+  0% {
+    bottom: 100px;
+    opacity: 0.5;
+  }
+  20% {
+    bottom: 92px;
+    opacity: 0.7;
+  }
+  40% {
+    bottom: 100px;
+    opacity: 0.9;
+  }
+  80% {
+    bottom: 92px;
+    opacity: 1;
+  }
+  100% {
+    bottom: 100px;
+    opacity: 0.5;
+  }
+}
+
+@keyframes top-move {
+  0% {
+    bottom: 100px;
+    opacity: 0.5;
+  }
+  20% {
+    bottom: 92px;
+    opacity: 0.7;
+  }
+  40% {
+    bottom: 100px;
+    opacity: 0.9;
+  }
+  80% {
+    bottom: 92px;
+    opacity: 1;
+  }
+  100% {
+    bottom: 100px;
+    opacity: 0.5;
+  }
+}
+
+main .main-container .back-top.sticky a i {
+  font-size: 36px;
 }
 /*# sourceMappingURL=product-index.css.map */

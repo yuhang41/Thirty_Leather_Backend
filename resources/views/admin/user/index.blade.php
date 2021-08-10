@@ -35,6 +35,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->address }}</td>
                                     <td>{{ $item->role }}</td>
                                     <td>
                                         <a href="{{ asset('/admin/edit') }}/{{ $item->id }}" class="btn btn-primary">編輯</a>

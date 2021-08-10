@@ -57,6 +57,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function(){
         Route::post('create/store','ProductController@store');
 
         Route::post('deleteimg','ProductController@deleteImg');
+
+        //color
+        Route::get('color/','ColorController@index');
+        Route::get('color/create','ColorController@create');
+        Route::post('color/create/store','ColorController@store');
+        Route::get('color/edit/{id}','ColorController@edit');
+        Route::post('color/edit/update/{id}','ColorController@update');
+        Route::delete('color/delete/{id}','ColorController@delete');
     });
 
     // Route::prefix('contactus')->group(function(){
@@ -72,6 +80,7 @@ Route::prefix('front')->group(function(){
         Route::post('/update','FrontController@update');
         Route::get('/shoppingstep2','FrontController@ShoppingStep2');
         Route::post('/shoppingstep2/check','FrontController@Step2_Check');
+
     });
     Route::delete('cart/delete/{id}','FrontController@delete');
     Route::get('/shoppingstep3','FrontController@ShoppingStep3');
@@ -79,9 +88,11 @@ Route::prefix('front')->group(function(){
     Route::prefix('product')->group(function(){
         Route::get('/','FrontController@product_index');
         Route::get('/detail/{id}','FrontController@product_detail');
+        Route::post('/detail','FrontController@product_detail_color');
 
 
         Route::post('/add','FrontController@add');
+        Route::post('/update','FrontController@update');
         Route::get('/content','FrontController@content');
         Route::get('/clear','FrontController@clear');
 
@@ -91,6 +102,10 @@ Route::prefix('front')->group(function(){
         Route::post('/update','FrontController@user_update');
         Route::get('/passwordModify','FrontController@user_password_modify');
         Route::post('/passwordModify/update','FrontController@user_password_update');
+        Route::get('/follow','FrontController@user_follow');
+        Route::post('/addFollow','FrontController@user_addFollow');
+        Route::post('/deleteFollow','FrontController@user_deleteFollow');
+        Route::delete('/delete/{id}','FrontController@delete_Follow');
         Route::post('/logout', 'Auth\LoginController@logout')->name('user_logout');
     });
     Route::prefix('login')->group(function(){

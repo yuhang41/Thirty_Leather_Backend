@@ -134,25 +134,34 @@
                             <div class="form-group col-md-12 d-flex mb-3 flex-wrap">
                                 @foreach ($sizes as $key => $item)
                                     <div class="mr-3">
-                                        <input type="checkbox" id="size{{ $key }}" name="size[]" value="{{ $item }}"
+                                        <input type="checkbox" id="{{ $key }}" name="size[]" value="{{ $item }}"
                                             @foreach ($check as $checked)
                                                 @if ($item == $checked)
                                                     checked
                                                 @endif
                                             @endforeach
                                         >
-                                        <label for="size{{ $key }}">{{ $item }}</label>
+                                        <label for="{{ $key }}">{{ $item }}</label>
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="color">產品顏色</label>
-                                @foreach ($edit->color as $color)
-                                    <input type="color" name="color[]" id="color" value="{{ $color }}">
+                            <h4>產品顏色</h4>
+                            <div class="form-group col-md-12 d-flex mb-3 flex-wrap">
+                                @foreach ($color as $key => $item)
+                                    <div class="mr-3 d-flex align-items-center">
+                                        <input type="checkbox" id="color{{ $key }}" name="color_id[]" value="{{ $item->id }}"
+                                            @foreach ($edit->colors as $color_detail)
+                                                @if ($item->id == $color_detail->color_id)
+                                                    checked
+                                                @endif
+                                            @endforeach
+                                        >
+                                        <label for="color{{ $key }}" class="d-flex align-items-center m-0">{{ $item->color_name }} <div style="background:{{ $item->color }}; height:10px; width:20px"></div></label>
+                                    </div>
                                 @endforeach
-                                <button type="button" class="btn btn-outline-dark d-block create_button">新增顏色</button>
+                                {{-- <button type="button" class="btn btn-outline-dark d-block create_button">新增顏色</button>
                                 <div class="my_color">
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="content">產品描述</label>

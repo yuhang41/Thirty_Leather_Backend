@@ -20,7 +20,10 @@
                 <input type="password" name="password" id="login-passwrd"/>
             </label>
             <p class="forgot-pass">忘記密碼?</p>
-            <button class="submit" id="user-login">登入</button>
+            <button class="submit clickable" id="user-login">
+                登入
+                <div class="anim"></div>
+            </button>
             <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
         </form>
         <div class="sub-cont">
@@ -67,7 +70,10 @@
                     <span>地址</span>
                     <input type="text" name="address"/>
                 </label>
-                <button class="submit" id="user-register">註冊</button>
+                <button class="submit clickable" id="user-register">
+                    註冊
+                    <div class="anim"></div>
+                </button>
                 <button type="button" class="fb-btn">Join with <span>facebook</span></button>
             </form>
         </div>

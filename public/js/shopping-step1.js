@@ -9,7 +9,7 @@ let difference = document.querySelector('.difference');//差多少可免運費
 let subtotal_total = document.querySelector('.subtotal-total');//小計
 let shipping_total = document.querySelector('.shipping-total');//運費
 let order_total_price = document.querySelector('.order-total-price');//總金額
-
+let csrf_token =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 let count = 0;
 start();
 function start(){
@@ -60,10 +60,10 @@ inputs.forEach((input)=>{
 })
 
 function update(index){
+    console.log(123);
     let formData =new FormData();
     let productId = inputs[index].dataset.id;
     let newValue = inputs[index].value;
-    let csrf_token =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     formData.append('_token',csrf_token);
     formData.append('productId',productId);
     formData.append('newValue',newValue);
@@ -78,3 +78,38 @@ function update(index){
         }
     });
 }
+
+//收藏清單動畫觸發
+let starIcon = document.querySelectorAll('.favorite');
+starIcon.forEach(function(item,idx){
+    item.addEventListener('click',function(e){
+        this.classList.toggle('active');
+        if(item.classList.contains('active')){
+            add_delete_Follow(item.dataset.id,idx,'addFollow','post');
+        }else{
+            add_delete_Follow(item.dataset.id,idx,'deleteFollow','post');
+        }
+    });
+})
+function add_delete_Follow(product_id,index,link,method){
+    let formData =new FormData();
+    let productId = product_id
+    let cartId = index + 1;
+    formData.append('_token',csrf_token);
+    formData.append('productId',productId);
+    formData.append('cartId',cartId);
+    fetch('/front/user/' + link ,{
+        'method' : method,
+        'body' : formData
+    }).then(rep=>{
+        return rep.text();
+    }).then(result=>{
+        if(result == 'success'){
+            console.log('更新成功')
+        }else{
+            alert('已經在追蹤清單裡');
+            starIcon[index].classList.remove('active');
+        }
+    });
+}
+

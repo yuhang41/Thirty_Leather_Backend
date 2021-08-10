@@ -22,12 +22,19 @@
 </head>
 
 <body>
+    @php
+        use App\TypeClass;
+        $class =  TypeClass::get();
+    @endphp
     <nav id="navbar">
-        {{-- <a href={{ asset('/front') }}></a> --}}
-        <img class="logo" src={{ asset('img/30leather_logo.svg') }} alt="">
+        <a href={{ asset('/front') }} class="go-home-logo"><img class="logo" src={{ asset('img/30leather_logo.svg') }} alt=""></a>
         <nav class="navbar navbar-expand-custom navbar-light">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
+            <div class="stick-container">
+                <div class="stick stick-1"></div>
+                <div class="stick stick-2"></div>
+                <div class="stick stick-3"></div>
+            </div>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -41,16 +48,14 @@
                   所有商品
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">女鞋</a>
-                  <a class="dropdown-item" href="#">小白鞋</a>
-                  <a class="dropdown-item" href="#">紳士鞋</a>
-                  <a class="dropdown-item" href="#">休閒鞋</a>
-                  <a class="dropdown-item" href="#">平底鞋</a>
-                  <a class="dropdown-item" href="#">跟鞋</a>
-                  <a class="dropdown-item" href="#">涼鞋</a>
-                  <a class="dropdown-item" href="#">娃娃鞋</a>
-                  <a class="dropdown-item" href="#">靴款</a>
-                  <a class="dropdown-item" href="#">防水系列</a>
+                  <a class="dropdown-item" href="{{ asset('/front/product') }}">全部</a>
+                    @foreach ($class as $item)
+                        @if ($item->id == 1)
+                            @foreach ($item->types as $type)
+                                <a class="dropdown-item" href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a>
+                            @endforeach
+                        @endif
+                    @endforeach
                 </div>
               </li>
               <!-- 女鞋 -->
@@ -59,15 +64,13 @@
                   女鞋
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">小白鞋</a>
-                            <a class="dropdown-item" href="#">紳士鞋</a>
-                            <a class="dropdown-item" href="#">休閒鞋</a>
-                            <a class="dropdown-item" href="#">平底鞋</a>
-                            <a class="dropdown-item" href="#">跟鞋</a>
-                            <a class="dropdown-item" href="#">涼鞋</a>
-                            <a class="dropdown-item" href="#">娃娃鞋</a>
-                            <a class="dropdown-item" href="#">靴款</a>
-                            <a class="dropdown-item" href="#">防水系列</a>
+                @foreach ($class as $item)
+                    @if ($item->id == 1)
+                        @foreach ($item->types as $type)
+                            <a class="dropdown-item" href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a>
+                        @endforeach
+                    @endif
+                @endforeach
                 </div>
               </li>
               <!-- 訂製雪靴 -->
@@ -76,10 +79,13 @@
                   訂製雪靴
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">迷你筒(16cm-18cm)</a>
-                  <a class="dropdown-item" href="#">低筒(22cm-24cm)</a>
-                  <a class="dropdown-item" href="#">中筒(26cm-28cm)</a>
-                  <a class="dropdown-item" href="#">高筒(30cm-33cm)</a>
+                    @foreach ($class as $item)
+                        @if ($item->id == 3)
+                            @foreach ($item->types as $type)
+                                <a class="dropdown-item" href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a>
+                            @endforeach
+                        @endif
+                    @endforeach
                 </div>
               </li>
               <!-- 更多 -->
@@ -139,7 +145,17 @@
             @guest
                 <a href={{ asset('/front/login') }}><i class="fas fa-user m-2"></i></a>
             @else
-                <a href={{ asset('/front/user') }}><i class="fas fa-user m-2" style="color:#000"></i></a>
+                {{-- <a href={{ asset('/front/user') }}><i class="fas fa-user m-2" style="color:#000"></i></a> --}}
+                <i class="member fas fa-user p-2" style="color:#000">
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href={{ asset('/front/user') }}>個人訊息</a>
+                        <a class="dropdown-item" href={{ asset('/front/user/follow') }}>追蹤清單</a>
+                        <form action={{ asset('/front/user/logout') }} method="POST" class="dropdown-item">
+                            @csrf
+                            <button type="submit" class="user-logout">會員登出</button>
+                        </form>
+                    </div>
+                </i>
             @endguest
             <div class="cart">
                 @guest
@@ -147,7 +163,7 @@
                 @else
                     <a href={{ asset('/front/shoppingstep1') }}><i class="fas fa-shopping-cart m-2"></i></a>
                 @endguest
-                <div class="cart-number">1</div>
+                {{-- <div class="cart-number">1</div> --}}
             </div>
           </div>
           <div class="twd-lang d-flex">
@@ -174,47 +190,46 @@
 
                 <hr>
 
-                <div class="col-md-12">
-                    <ul class="social-icons mb-0 row list-unstyled justify-content-center">
-                        <li><a class="line d-inline-block" href=""></a></li>
+                <div class="footer-icons d-flex justify-content-center">
+                    <a class="line" href="https://page.line.me/igt6497i?openQrModal=true" target="_blank">
+                        <img src="{{ asset('img/line.svg') }}" alt="">
+                    </a>
 
-                        <li><a class="facebook d-inline-block" href="https://www.facebook.com/30leather" target="_blank"></a></li>
+                    <a class="facebook" href="https://www.facebook.com/30leather" target="_blank">
+                        <img src="{{ asset('img/facebook.svg') }}" alt="">
+                    </a>
 
-                        <li><a class="instagram d-inline-block" href="https://www.instagram.com/30leather/" target="_blank"></a></li>
-                    </ul>
+                    <a class="instagram" href="https://www.instagram.com/30leather/" target="_blank">
+                        <img src="{{ asset('img/instagram.svg') }}" alt="">
+                    </a>
+                </div>
 
-                    <div class="return-nav d-flex justify-content-end">
-                        <a href=""><i class="footer-arrow fas fa-sort-up" aria-hidden="true">
-                                <div class="footer-arrow-text">TOP</div>
-                            </i></a>
-                    </div>
+                <div class="footer-links d-flex justify-content-center">
+                    <div class="block d-flex">
+                        <ul class="block1 list-unstyled d-flex">
+                            <li class="common-problem list">常見問題</li>
 
-                    <div class="common-problems row col-lg-12 col-md-3 col-sm-4 col-5">
-                        <ul class="row m-auto list-unstyled">
-                            <li class="list common-problem">常見問題</li>
+                            <li class="sale list">售前與售後服務</li>
 
-                            <li><a href="#" class="lists"></a>售前與售後服務</li>
+                            <li class="pay list">付款方式</li>
+                        </ul>
 
-                            <li><a href="#" class="lists"></a>付款方式</li>
+                        <ul class="block2 list-unstyled d-flex">
+                            <li class="send list">寄送方式</li>
 
-                            <li><a href="#" class="lists"></a>寄送方式</li>
+                            <li class="refund list">退貨流程</li>
 
-                            <li><a href="#" class="lists"></a>退款流程</li>
+                            <li class="invoice list">發票折讓</li>
 
-                            <li><a href="#" class="lists"></a>發票折讓</li>
-
-                            <li class="list"><a href="#" class="lists"></a>隱私權保護</li>
+                            <li class="privacy">隱私權</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <hr>
-
-            <div class="copyright-space d-inline-block"></div>
-
-            <div class="copyright d-flex align-items-center justify-content-center">Copyright &copy; 三十革-臺灣手工鞋 All
-                Rights Reserved</div>
+            <div class="copyright d-flex align-items-center justify-content-center">Copyright &copy;<span>森上沒戴前 All
+                Rights Reserved</span></div>
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -229,6 +244,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <!-- aos-js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="./js/nav.js"></script>
     @yield('js')
 </body>
 

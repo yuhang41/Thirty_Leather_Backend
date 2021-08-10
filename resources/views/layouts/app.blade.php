@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <-回前端頁面
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +41,7 @@
                                 <a class="dropdown-item" href="{{ asset('/admin/product/class') }}">種類類型</a>
                                 <a class="dropdown-item" href="{{ asset('/admin/product/type') }}">產品種類</a>
                                 <a class="dropdown-item" href="{{ asset('/admin/product') }}">品項</a>
+                                <a class="dropdown-item" href="{{ asset('/admin/product/color') }}">品項顏色</a>
                             </div>
                         </li>
                     </ul>

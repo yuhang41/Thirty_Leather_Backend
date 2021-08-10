@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->string('product_nickname')->comment('產品別稱');
             $table->integer('price')->comment('產品價格');
             $table->string('size')->comment('尺寸');
-            $table->string('color')->comment('顏色');
+            // $table->string('color')->comment('顏色');
             $table->integer('product_quantity')->comment('產品庫存量');
             $table->longText('content')->comment('產品描述');
-            $table->longText('photo')->comment('圖片');
+            $table->longText('photo')->comment('圖片')->default('https://placeholder.pics/svg/300x500');
             $table->timestamps();
         });
     }

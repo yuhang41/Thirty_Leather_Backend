@@ -1,106 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-footer .site-footer {
-  height: 600px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+footer {
+  position: relative;
+}
+
+footer:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+  opacity: 0.7;
 }
 
 footer .site-footer hr {
   border: none;
 }
 
-footer .site-footer .footer-logo {
+footer .site-footer .container {
+  padding-top: 132px;
+}
+
+footer .site-footer .container .footer-logo {
   width: 195px;
   height: 180px;
   margin: auto;
 }
 
-footer .site-footer .social-icons a {
-  width: 48px;
-  height: 48px;
-  line-height: 48px;
-  border-radius: 50%;
+footer .site-footer .container .footer-icons {
+  margin-bottom: 4rem;
 }
 
-footer .site-footer .social-icons a.line {
-  background-image: url("/img/LINE-ICON.jpg");
-  background-position: center;
-  background-size: contain;
+footer .site-footer .container .footer-icons a img {
+  width: 50px;
+  height: 50px;
+  margin: 0px 8px;
 }
 
-footer .site-footer .social-icons a.facebook {
-  background-image: url("/img/facebook-ICON.jpg");
-  background-position: center;
-  background-size: contain;
-  margin: 0px 20px;
-}
-
-footer .site-footer .social-icons a.instagram {
-  background-image: url("/img/Instagram.ICON.jpg");
-  background-position: center;
-  background-size: contain;
-}
-
-footer .site-footer .footer-arrow {
+footer .site-footer .container .return-nav .footer-arrow {
   font-size: 72px;
   color: #f7a269;
   position: relative;
 }
 
-footer .site-footer .footer-arrow-text {
+footer .site-footer .container .return-nav .footer-arrow .footer-arrow-text {
   font-size: 18px;
+  font-family: "Source Code Pro";
   letter-spacing: 1.6px;
   position: absolute;
   top: 40px;
-  left: 4px;
+  left: 5px;
 }
 
-footer .site-footer .common-problems {
+footer .site-footer .container .footer-links {
   font-size: 16px;
   letter-spacing: 3.2px;
   color: #444444;
-}
-
-footer .site-footer .common-problems .lists {
-  border-left: 1px solid #8090a0;
-  padding-right: 10px;
-}
-
-footer .site-footer .common-problems .list {
   cursor: default;
 }
 
-footer .site-footer .common-problems a {
-  color: #8090a0;
+footer .site-footer .container .footer-links .block ul {
+  margin-bottom: 4rem;
 }
 
-footer .site-footer .common-problems ul li {
-  padding-left: 10px;
-  cursor: pointer;
+footer .site-footer .container .footer-links .block li {
+  margin: 0px 5px;
+}
+
+footer .site-footer .container .footer-links .block .list {
+  border-right: 1px solid #444444;
+  padding-right: 7px;
 }
 
 footer .site-footer .copyright {
   height: 80px;
-  background-color: #7a7573;
+  background: #354b5e;
   font-size: 15px;
-  letter-spacing: 1.6px;
   color: #ffffff;
+}
+
+footer .site-footer .copyright span {
+  margin-left: 5px;
+}
+
+@media (max-width: 1024px) {
+  footer {
+    position: relative;
+  }
+  footer .site-footer .container .footer-icons {
+    margin-bottom: 30px;
+  }
+  footer .site-footer .container .return-nav .footer-arrow {
+    position: absolute;
+    top: 25%;
+    right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  footer .site-footer .container .footer-links .block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  footer .site-footer .container .footer-links .block .block1 {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  footer .site-footer .container .footer-links .block .common-problem, footer .site-footer .container .footer-links .block .send {
+    border-left: 1px solid #444444;
+    padding-left: 7px;
+  }
+  footer .site-footer .container .footer-links .block .privacy {
+    border-right: 1px solid #444444;
+    padding-right: 7px;
+  }
+}
+
+@media (max-width: 520px) {
+  footer .site-footer .container .footer-links {
+    font-size: 14px;
+  }
+  footer .site-footer .container .footer-links .block li {
+    margin: 0;
+  }
+  footer .site-footer .container .footer-links .block .list {
+    padding-right: 1px;
+    padding-left: 3px;
+  }
+  footer .site-footer .container .footer-links .block .block2 .privacy {
+    padding-left: 2px;
+  }
+  footer .site-footer .copyright {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  footer .site-footer .copyright span {
+    margin-top: 5px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  footer {
+    position: relative;
+  }
+  footer .site-footer .container .footer-logo {
+    width: 95px;
+    height: 80px;
+  }
+  footer .site-footer .container .return-nav .footer-arrow {
+    position: absolute;
+    top: 12%;
+    right: 0;
+  }
 }
 /*# sourceMappingURL=footer.css.map */

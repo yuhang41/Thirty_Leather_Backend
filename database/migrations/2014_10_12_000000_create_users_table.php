@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone')->comment('電話');
             $table->string('address')->comment('地址');
-            $table->date('date')->comment('日期')->nullable();;
+            $table->date('date')->comment('日期')->nullable();
             $table->string('role')->comment('權限');
             $table->rememberToken();
             $table->timestamps();

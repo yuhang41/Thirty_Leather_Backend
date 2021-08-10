@@ -77,21 +77,9 @@
                                                 </div>
                                                 <div class="cart-text">
                                                     <p>
-                                                        @foreach ($item->attributes->color as $cart_color)
-                                                            @foreach ($colors as $key=>$color)
-                                                                @if ($color == $cart_color)
-                                                                    {{ $key }},
-                                                                @endif
-                                                            @endforeach
-                                                        @endforeach
+                                                        {{ $item->attributes->color }}
                                                     </p>
-                                                    @foreach ($item->attributes->size as $cart_size)
-                                                        @foreach ($sizes as $size)
-                                                            @if ($size == $cart_size)
-                                                                {{ $size }},
-                                                            @endif
-                                                        @endforeach
-                                                    @endforeach
+                                                    cm:{{ $item->attributes->size }}
                                                 </div>
                                             </div>
                                         </li>
@@ -157,53 +145,55 @@
                         </div>
                     </div>
                 </div>
-                <div class="addressee">
-                    <div class="addressee-title">收件人資訊</div>
-                    <div class="shipping-type">
-                        <p>已選擇的送貨方式 : 7-11取貨付款</p>
+                <div class="recipient-info">
+                    <div class="addressee">
+                        <div class="addressee-title">收件人資訊</div>
+                        <div class="shipping-type">
+                            <p>已選擇的送貨方式 : 7-11取貨付款</p>
+                        </div>
+                        <div class="addressee-info">
+                            <div class="addressee-check">
+                                <input type="checkbox" id="addressee-check" class="checkmark"
+                                    onclick="copyInformation()">
+                                <label for="addressee-check">收件人資料與訂購人資料相同</label>
+                            </div>
+                            <div class="addressee-name">
+                                <label for="addressee-name">收件人姓名</label><br>
+                                <input type="text" id="addressee-name" placeholder="林土木" name="receive_name">
+                                <p>請填入收件人真實姓名，以確保順利收件</p>
+                            </div>
+                            <div class="addressee-phone">
+                                <label for="addressee-phone">收件人電話號碼</label><br>
+                                <input type="text" id="addressee-phone" placeholder="0900 - 123456" name="receive_phone">
+                            </div>
+                        </div>
+                        <div class="shipping-info">
+                            <div class="store-number">
+                                <span>已選門市店號</span>
+                                <span>131375</span>
+                            </div>
+                            <div class="store-name">
+                                <span>已選門市名稱</span>
+                                <span>彰永門市</span>
+                            </div>
+                            <div class="store-address">
+                                <span>門市地址</span>
+                                <span>彰化縣彰化市永安街338號1樓</span>
+                            </div>
+                        </div>
+                        <button type="button">更改</button>
                     </div>
-                    <div class="addressee-info">
-                        <div class="addressee-check">
-                            <input type="checkbox" id="addressee-check" class="checkmark"
-                                onclick="copyInformation()">
-                            <label for="addressee-check">收件人資料與訂購人資料相同</label>
+                    <div class="payment">
+                        <div class="payment-title">付款資料</div>
+                        <div class="payment-type">
+                            <p>已選擇的付款方式 : 7-11取貨付款</p>
                         </div>
-                        <div class="addressee-name">
-                            <label for="addressee-name">收件人姓名</label><br>
-                            <input type="text" id="addressee-name" placeholder="林土木" name="receive_name">
-                            <p>請填入收件人真實姓名，以確保順利收件</p>
-                        </div>
-                        <div class="addressee-phone">
-                            <label for="addressee-phone">收件人電話號碼</label><br>
-                            <input type="text" id="addressee-phone" placeholder="0900 - 123456" name="receive_phone">
-                        </div>
-                    </div>
-                    <div class="shipping-info">
-                        <div class="store-number">
-                            <span>已選門市店號</span>
-                            <span>131375</span>
-                        </div>
-                        <div class="store-name">
-                            <span>已選門市名稱</span>
-                            <span>彰永門市</span>
-                        </div>
-                        <div class="store-address">
-                            <span>門市地址</span>
-                            <span>彰化縣彰化市永安街338號1樓</span>
-                        </div>
-                    </div>
-                    <button>更改</button>
-                </div>
-                <div class="payment">
-                    <div class="payment-title">付款資料</div>
-                    <div class="payment-type">
-                        <p>已選擇的付款方式 : 7-11取貨付款</p>
                     </div>
                 </div>
             </div>
         </form>
         <div class="other-amount">
-            <button herf="#" class="back-button"><<返回購物車 </button>
+            <a href="{{ asset('/front/product') }}" class="back-button"> <<返回購物車 </a>
             <div class="amount">
                 <div class="free-ship">
                     <p>已享用之優惠</p>

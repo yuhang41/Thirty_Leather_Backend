@@ -14,25 +14,30 @@
                 所有商品
             </div>
             <ul class="commodity-menu-options collapse show" id="multiCollapseExample1">
-                <li><a href="#">女鞋</a></li>
-                <li><a href="#">小白鞋</a></li>
-                <li><a href="#">紳士鞋</a></li>
-                <li><a href="#">休閒鞋</a></li>
-                <li><a href="#">平底鞋</a></li>
-                <li><a href="#">跟鞋</a></li>
-                <li><a href="#">涼鞋</a></li>
-                <li><a href="#">娃娃鞋</a></li>
-                <li><a href="#">鞋款</a></li>
-                <li><a href="#">防水系列</a></li>
+                <li><a href="{{ asset('/front/product/') }}">全部</a></li>
+                @foreach ($class as $item)
+                    @if ($item->id == 1)
+                        @foreach ($item->types as $type)
+                            <li><a href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a></li>
+                        @endforeach
+                    @endif
+                @endforeach
             </ul>
-            <div class="commodity-menu-title Snowshoe" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+            <div class="commodity-menu-title Snowshoe collapsed" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
                 訂製雪靴
             </div>
             <ul class="commodity-menu-options collapse" id="multiCollapseExample2">
-                <li><a href="#">迷你筒(16cm-18cm)</a></li>
+                @foreach ($class as $item)
+                    @if ($item->id == 3)
+                        @foreach ($item->types as $type)
+                            <li><a href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a></li>
+                        @endforeach
+                    @endif
+                @endforeach
+                {{-- <li><a href="#">迷你筒(16cm-18cm)</a></li>
                 <li><a href="#">低筒(22cm-24cm)</a></li>
                 <li><a href="#">中筒(26cm-28cm)</a></li>
-                <li><a href="#">高筒(30cm-33cm)</a></li>
+                <li><a href="#">高筒(30cm-33cm)</a></li> --}}
             </ul>
             <div class="commodity-other">
                 配件
@@ -57,24 +62,32 @@
                 <p>進階篩選</p>
             </div>
         </div>
-        <div class="product-container-card">
-            @foreach ($products as $product)
-                <div class="product-card">
-                    <img src={{ asset($product->photo) }} alt="">
-                    <div class="content">
-                        <div class="text">
-                            <p>{{ $product->product_nickname }}</p>
-                            <p>{{ $product->product_name }}</p>
-                        </div>
-                        <div class="price">
-                            <span>${{ $product->price }}</span>
-                            <span>${{ $dicount = round($product->price * $product->discount) }}</span>
+        @if (!$products->isEmpty())
+            <div class="product-container-card">
+                @foreach ($products as $product)
+                    <div class="product-card-spacing">
+                        <div class="product-card">
+                            <img src={{ asset($product->photo) }} alt="">
+                            <div class="content">
+                                <div class="text">
+                                    <p>{{ $product->product_nickname }}</p>
+                                    <p>{{ $product->product_name }}</p>
+                                </div>
+                                <div class="price">
+                                    <span>${{ $product->price }}</span>
+                                    <span>${{ $dicount = round($product->price * $product->discount) }}</span>
+                                </div>
+                            </div>
+                            <a href="{{ asset('/front/product/detail') }}/{{ $product->id }}">
+                            <button>了解此商品</button>
+                            </a>
                         </div>
                     </div>
-                    <a href="{{ asset('/front/product/detail') }}/{{ $product->id }}">了解此商品</a>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @else
+            <h3 class="null-product">目前無商品</h3>
+        @endif
         <div class="pagination">
             <ul>
                 <li><a href="#"><i class="fas fa-caret-left"></i></a></li>
@@ -83,9 +96,14 @@
             </ul>
         </div>
     </div>
+    <div class="back-top">
+        <a href="#web-top">
+            <i class="a-anchor fas fa-angle-double-up"></i>
+        </a>
+    </div>
 </div>
 @endsection
 
 @section('js')
-    <script src={{ asset('js/product-index.js') }}></script>
+
 @endsection

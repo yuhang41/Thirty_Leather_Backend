@@ -61,43 +61,30 @@
                         <div class="order-commodity-content collapse show" id="multiCollapseExample2">
                             @foreach ($order->detail as $item)
                                 @php
-                                    // $original_price = round($item->price / $item->attributes->discount);
                                     $subtotal = $item->quantity * $item->price;
-                                    $detail_color = json_decode($item->color);
-                                    $detail_size = json_decode($item->size);
-                                    // dd($detail_color);
+                                    // $detail_size = json_decode($item->size);
                                 @endphp
                                 <div class="commodity">
-                                    <div class="photo">
-                                        <img src="{{ asset($item->product->photo) }}">
-                                    </div>
-                                    <div class="commodity-content">
-                                        <div class="commodity-title">
-                                            <p>{{ $item->product->product_nickname }}</p>
-                                            <p>{{ $item->product->product_name }}</p>
+                                    <div class="photo-content">
+                                        <div class="photo">
+                                            <img src="{{ asset($item->product->photo) }}">
                                         </div>
-                                        <div class="commodity-size">
-                                            <p>
-                                                @foreach ($detail_color as $cart_color)
-                                                    @foreach ($colors as $key=>$color)
-                                                        @if ($color == $cart_color)
-                                                            {{ $key }},
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach
-                                            </p>
-                                            <p>
-                                                @foreach ($detail_size as $cart_size)
-                                                    {{-- @foreach ($sizes as $size)
-                                                        @if ($size == $cart_size)
-                                                            {{ $size }},
-                                                        @endif
-                                                    @endforeach --}}
-                                                    {{ $cart_size }}
-                                                @endforeach
-                                            </p>
+                                        <div class="commodity-content">
+                                            <div class="commodity-title">
+                                                <p>{{ $item->product->product_nickname }}</p>
+                                                <p>{{ $item->product->product_name }}</p>
+                                            </div>
+                                            <div class="commodity-size">
+                                                <p>
+                                                    {{ $item->color }}
+                                                </p>
+                                                <p>
+                                                    cm:{{ $item->size }}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="commodity-subtotal">
                                         <div class="quantity-subtotal">
                                             <p>數量 {{ $item->quantity }}</p>
@@ -116,7 +103,7 @@
                     </div>
                     <div class="order-complete">
                         <div class="photo-svg">
-                            <img src="https://placeholder.pics/svg/100x100">
+                            <img src={{ asset('img/購物車-訂單完成.svg') }}>
                         </div>
                         <div class="complete-message">
                             <h3>謝謝您!您的訂單已經成立</h3>
@@ -163,8 +150,10 @@
                                     </li>
                                     <li>
                                         <h5>送貨方式</h5>
-                                        <p>7-11取貨付款</p>
-                                        <div class="order-track">7-11物流追蹤</div>
+                                        <div class="order-track">
+                                            <p>7-11取貨付款</p>
+                                            <p>7-11物流追蹤</p>
+                                        </div>
                                     </li>
                                     <li>
                                         <h5>送貨狀態</h5>

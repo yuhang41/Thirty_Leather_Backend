@@ -6,176 +6,206 @@
 @endsection
 
 @section('content')
-<div class="member-center">
-    <div class="m-center-index text-center">會員中心首頁</div>
+<div class="member-page">
+    <div class="page-title text-center">會員中心首頁</div>
 
-    <div class="list-Group d-flex justify-content-center">
-        <div class="list-groups p-0">
-            <div class="list-group" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active text-center" id="list-memberCenter-list"
-                    data-toggle="list" href="#list-memberCenter" role="tab"
-                    aria-controls="memberCenter">會員中心</a>
+    <div class="member-lists d-flex justify-content-center mx-auto">
 
-                <a class="list-group-item list-group-item-action text-center"
-                    href={{ asset('/front/user/passwordModify') }}>密碼修改</a>
-                <form action={{ route('user_logout') }} method="POST">
-                    @csrf
-                    <button class="list-group-item list-group-item-action text-center" type="submit">會員登出</button>
-                </form>
-                @can('admin')
-                    <a class="list-group-item list-group-item-action text-center" href={{ asset('/admin/home') }}>管理者</a>
-                @endcan
-            </div>
-        </div>
+        <form action={{ route('user_logout') }} method="POST" class="list-group text-center font-weight-bold" id="list-tab" role="tablist">
+            @csrf
+            <a class="list-group-item list-group-item-action active font-weight-bold" href="{{ asset('/front/user/') }}">會員<span>中心</span></a>
 
-        <div class="tab-contents">
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-memberCenter" role="tabpanel"
-                    aria-labelledby="list-memberCenter-list">
-                    <div class="member-data">
-                        <div class="row align-items-start">
-                            <div class="col mt-4 d-flex justify-content-center">
-                                <i class="fas fa-user"></i>
+            <a class="list-group-item list-group-item-action" id="list-profile-list"
+                href={{ asset('/front/user/passwordModify') }}>密碼<span>修改</span>
+            </a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" href={{ asset('/front/user/follow') }}>追蹤<span>清單</span></a>
+            <button type="submit" id="list-profile-list" class="list-group-item list-group-item-action">會員<span>登出</span></button>
+            @can('admin')
+                <a class="list-group-item list-group-item-action" id="list-profile-list" href={{ asset('/admin/home') }}>管理者</a>
+            @endcan
+        </form>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-memberCenter" role="tabpanel"
+                aria-labelledby="list-memberCenter-list">
+                <div class="member-data">
+                    <div class="member-container mx-auto">
+                        <div class="data-block1 d-flex justify-content-center mt-4">
+                            <i class="fas fa-user"></i>
 
-                                <div class="user-id">{{ $user->name }}</div>
+                            <div class="user-id font-weight-bold">{{ $user->name }}</div>
 
-                                <div class="general-member">一般會員</div>
+                            <div class="general-member d-flex align-items-center justify-content-center">
+                                一般會員
                             </div>
                         </div>
 
-                        <div class="User-edit mt-2 d-flex justify-content-center">
+                        <div class="data-block2 d-flex justify-content-center mt-2">
                             <i class="fas fa-pen mr-1"></i>
 
                             <div class="user-edit ml-1">編輯會員資料</div>
                         </div>
 
-                        <form action={{ asset('/front/user/update') }} method="POST" class="member-container mx-auto">
+                        <form action={{ asset('/front/user/update') }} method="POST">
                             @csrf
-                            <div class="input-data col-md-12 ml-0 mt-2 row">
-                                <div class="data-left col-md-6 pl-0">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <label class="label1 font-weight-bold col-3 mt-2">姓名</label>
-
-                                                <input type="text" class="input font-weight-normal" name="name"
-                                                    placeholder="林土木" value='{{ $user->name }}'>
-                                            </div>
+                            <div class="data-block3">
+                                <div class="input-data">
+                                    <div class="input-left">
+                                        <div class="input1 input-name">
+                                            <label class="title font-weight-bold">姓名</label>
+                                            <input type="text" class="content content-edit" value="{{ $user->name }}" placeholder="林土木" name="name" readonly>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <label
-                                                    class="label1 font-weight-bold col-3 mt-2 pt-1">信箱</label>
-
-                                                <input type="text" class="input font-weight-normal" name="email"
-                                                    placeholder="test123@gmail.com" value="{{ $user->email }}">
-                                            </div>
+                                        <div class="input1 input-email">
+                                            <label class="title title1 font-weight-bold">信箱</label>
+                                            <input type="email" class="content content-edit" value="{{ $user->email }}" placeholder="test123@gmail.com" name="email" readonly>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <label
-                                                    class="label1 font-weight-bold col-3 mt-2 pt-1">行動電話</label>
-
-                                                <input type="text" class="input font-weight-normal pt-1" name="phone"
-                                                    placeholder="0900 - 123456" value="{{ $user->phone }}">
-                                            </div>
+                                        <div class="input1 input-phone">
+                                            <label class="title title1 font-weight-bold">行動電話</label>
+                                            <input type="text" class="content content-edit" value="{{ $user->phone }}" placeholder="0900 - 123456" name="phone" readonly>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <label
-                                                    class="label1 font-weight-bold col-3 mt-2 pt-1">出生日期</label>
-                                                <input type="date" class="input font-weight-normal pt-1" name="date"
-                                                    placeholder="1995 / 01 / 24" value="{{ $user->date }}">
-                                            </div>
+                                        <div class="input1 input-date">
+                                            <label class="title title1 font-weight-bold">出生日期</label>
+                                            <input type="date" class="content content-edit" value="{{ $user->date }}" placeholder="1995 / 01 / 24" name="date" readonly>
+
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="data-right col-md-6">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="address-block col-12 pl-0 mt-1 pb-2 mb-3 d-flex">
-                                                <label class="label1 font-weight-bold col-6 mt-1">聯絡地址</label>
+                                    <div class="input-right d-flex flex-column justify-content-between mt-1">
+                                        <div class="contact d-flex">
+                                            <label class="title5 font-weight-bold">聯絡地址</label>
 
-                                                <div class="address city-selector-set row">
-                                                    <select class="county"></select>
+                                            <div class="address-data city-selector-set">
+                                                <div class="city-block">
+                                                    <select class="county">&#xf042;</select>
 
                                                     <select class="district"></select>
 
-                                                    <input class="zipcode" type="text" size="3" readonly
-                                                        placeholder="郵遞區號">
-
-                                                    <input class="input1 mt-2" type="text" placeholder="詳細的地址" name="address" value="{{ $user->address }}">
+                                                    <input class="zipcode text-center" type="text" size="3"
+                                                        readonly placeholder="郵遞區號">
                                                 </div>
-                                            </div>
 
-                                            <label class="label1 font-weight-bold col-12 mt-4 mb-0 pt-2">訂閱電子報
-                                                <i class="fas fa-check-square"></i>
+                                                <input class="detail-address mt-2 content-edit" type="text"
+                                                    placeholder="詳細的地址" value="{{ $user->address }}" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="subscribe">
+                                            <label class="title6 font-weight-bold">訂閱電子報
+                                                <input type="checkbox" checked="checked">
+
+                                                <span class="checkmark"></span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="member-btn mx-auto mt-3 mb-3">
-                                    <button type="button" class="btn">取消</button>
+                            <div class="data-block4 mb-4">
+                                <div class="btn-groups">
+                                    <button type="button"
+                                        class="btn cancel d-flex align-items-center font-weight-bold mr-1">取消</button>
 
-                                    <button type="submit" class="btn">儲存變更</button>
+                                    <button type="submit"
+                                        class="btn d-flex align-items-center font-weight-bold ml-1">儲存變更</button>
                                 </div>
                             </div>
                         </form>
+                    </div>
 
-                        <div class="order-five mt-2 text-center">訂單前5筆</div>
+                    <div class="data-block5">
+                        <div class="order-title text-center">訂單前五筆</div>
+                    </div>
 
-                        <div class="table-container mx-auto mt-1 text-center">
+                    <div class="data-block6">
+                        <div class="order-content mb-3">
+                            <div class="order-lists text-center">
+                                <div class="list-block1 d-flex">
+                                    <ul class="block1-l d-flex pl-0 mb-0">
+                                        <li class="order-number">訂單編號</li>
+                                        <li class="order-date">訂購日期</li>
+                                        <li class="order-status">訂單狀態</li>
+                                        <li class="pickUp-method">收貨方式</li>
+                                    </ul>
 
-                            <table class="table table-borderless text-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="table-active">訂單編號</th>
-                                        <th class="table-active">訂購日期</th>
-                                        <th class="table-active">訂單狀態</th>
-                                        <th class="table-active">收件方式</th>
-                                        <th class="table-active">寄送方式</th>
-                                        <th class="table-active">處理進度</th>
-                                        <th class="table-active">應付金額</th>
-                                        <th class="table-active">發票</th>
-                                        <th class="table-active">退貨服務</th>
-                                    </tr>
-                                </thead>
+                                    <ul class="block1-r d-flex pl-0 mb-0">
+                                        <li class="delivery-way">寄送方式</li>
+                                        <li class="process-time">處理進度</li>
+                                        <li class="payable-amount">應付金額</li>
+                                        <li class="check-invoice">發票</li>
+                                        <li class="return-service">退貨服務</li>
+                                    </ul>
+                                </div>
+                                @foreach ($list_order as $key=>$order)
+                                    <div class="list-block d-flex">
+                                        <ul class="block-l d-flex mb-0">
+                                            <li>
+                                                <div class="number">{{ $order->order_no }}</div>
+                                            </li>
 
-                                <tbody>
-                                    @foreach ($list_order as $order)
-                                        <tr>
-                                            <td class="row">
-                                                <div class="orderNumber font-weight-normal">{{ $order->order_no }}</div>
-                                            </td>
-                                            <td>{{ $order->created_at }}</td>
-                                            <td>已出貨</td>
-                                            <td>全家超商取貨</td>
-                                            <td>全家店配</td>
-                                            <td>處理中</td>
-                                            <td>{{ $order->price }}</td>
-                                            <td>
-                                                <div class="checkInvoice">檢視發票</div>
-                                            </td>
-                                            <td>
-                                                <div class="returnInfor">退貨資訊</div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <div class="table-icon">
-                                <button class="fas fa-caret-left text-decoration-none"></button>
+                                            <li class="date">{{ $order->date }}</li>
+                                            <li class="status">已出貨</li>
+                                            <li class="method">全家超商取貨</li>
+                                        </ul>
 
-                                <span class="p-1 icon-number">1</span>
+                                        <ul class="block-r d-flex mb-0">
+                                            <li class="way">全家店配</li>
+                                            <li class="time">已配送</li>
+                                            <li class="amount">{{ $order->price }}</li>
 
-                                <button class="fas fa-caret-right text-decoration-none"></button>
+                                            <li>
+                                                <div class="invoice">檢視發票</div>
+                                            </li>
+
+                                            <li>
+                                                <div class="information">退貨資訊</div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="ttz">
+                                            <div class="click-toggle">
+                                                <ul class="top order-detail-click d-flex collapsed" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded=false aria-controls="collapse{{ $key }}">
+                                                    <li class="plus">+</li>
+                                                    <li class="minus">-</li>
+                                                    <li class="order-detail font-weight-bold">訂單明細</li>
+                                                </ul>
+
+                                                <div class="square collapse" id="collapse{{ $key }}">
+                                                    <ul class="mid d-flex">
+                                                        <li>寄送方式</li>
+                                                        <li>處理進度</li>
+                                                        <li>應付金額</li>
+                                                        <li>發票</li>
+                                                        <li>退貨服務</li>
+                                                    </ul>
+
+                                                    <ul class="bot d-flex">
+                                                        <li>全家店配</li>
+                                                        <li>已配送</li>
+                                                        <li>{{ $order->price }}</li>
+                                                        <li>
+                                                            <div class="invoice1">檢視發票</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="information1">退貨資訊</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
+                    </div>
+
+                    <div class="data-block7 d-flex justify-content-center mb-3">
+                        <button class="fas fa-caret-left"></button>
+
+                        <span class="px-2 icon-number">1</span>
+
+                        <button class="fas fa-caret-right"></button>
                     </div>
                 </div>
             </div>
@@ -187,4 +217,5 @@
 @section('js')
     <script src={{ asset('js/tw-city-selector.js') }}></script>
     <script src={{ asset('js/address.js') }}></script>
+    <script src={{ asset('js/login.js') }}></script>
 @endsection

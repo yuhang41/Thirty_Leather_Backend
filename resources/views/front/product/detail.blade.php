@@ -26,7 +26,7 @@
                 <li><a href="#">鞋款</a></li>
                 <li><a href="#">防水系列</a></li>
             </ul>
-            <div class="commodity-menu-title Snowshoe" data-toggle="collapse" data-target="#multiCollapseExample2"
+            <div class="commodity-menu-title Snowshoe collapsed" data-toggle="collapse" data-target="#multiCollapseExample2"
                 aria-expanded="false" aria-controls="multiCollapseExample2">
                 訂製雪靴
             </div>
@@ -60,10 +60,19 @@
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
                         class="swiper-container mySwiper2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            {{-- <div class="swiper-slide">
                                 <img src={{ asset($product->photo) }} />
-                            </div>
-                            @foreach ($product->photos as $photo)
+                            </div> --}}
+                            @php
+                                if($judgment){
+                                    $myphotos = $product->photos;
+                                    $mycolor = null;
+                                }else {
+                                    $myphotos = $color_photo->color->color_photos->where('product_id',$product->id);
+                                    $mycolor = $color_photo->color->id;
+                                }
+                            @endphp
+                            @foreach ($myphotos as $photo)
                                 <div class="swiper-slide">
                                     <img src={{ asset($photo->photos) }} />
                                 </div>
@@ -74,10 +83,7 @@
                     <div class="swiper-button-prev"></div>
                     <div thumbsSlider="" class="swiper-container mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src={{ asset($product->photo) }} />
-                            </div>
-                            @foreach ($product->photos as $photo)
+                            @foreach ($myphotos as $photo)
                                 <div class="swiper-slide">
                                     <img src={{ asset($photo->photos) }} />
                                 </div>
@@ -87,72 +93,110 @@
                 </div>
                 <div class="order-detail">
                     <div class="odrer-info">
-                        <div class="order-discript">
-                            <div class="discript-title">
-                                <p>&nbsp;{&nbsp;&nbsp;{{ $product->product_name }}&nbsp;&nbsp;}</p>
-                                <p>{{ $product->product_nickname }}</p>
-                            </div>
-                            <div class="evaluation">
-                                <div class="star-eval">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="other-eavl">
-                                    <p>5.0分</p>
-                                    <p><a href="#eval">1個評價</a></p>
-                                    <p><i class="fas fa-heart"></i>收藏</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="order-text">
-                                    <i class="fas fa-circle"></i>
-                                    <p>酒紅色是植鞣羊皮。黑、焦糖、裸麥、白色這四色是牛皮<br>，白色皮料有做防汙處理，較不易髒。</p>
-                                </div>
-                                <div class="order-text">
-                                    <i class="fas fa-circle"></i>
-                                    <p>跟高約2.5cm。吸汗透氣豚皮內裡(腳墊)。包覆5mm高密<br>度發泡鞋墊。L型90度立體導角真皮沿條。懶人S鈎扣，<br>有三孔可以調整鬆緊。</p>
-                                </div>
-                            </div>
+                        <div class="discript-title">
+                            <p>&nbsp;{&nbsp;&nbsp;{{ $product->product_name }}&nbsp;&nbsp;}</p>
+                            <p>{{ $product->product_nickname }}</p>
                         </div>
-                        <div class="order-color">
-                            <div class="color-title">
-                                <span>顏色</span>
-                                <span>經典黑</span>
+                        <div class="order-contain">
+                            <div class="order-discript">
+                                <div class="evaluation">
+                                    <div class="star-eval">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="other-eavl">
+                                        <p>5.0分</p>
+                                        <p><a href="#eval">1個評價</a></p>
+                                        <p>
+                                            <input type="checkbox" id="star2">
+                                            <label for="star2">
+                                                <i class="fas fa-heart">
+                                                </i>
+                                            </label>
+                                            收藏
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="order-text">
+                                        <i class="fas fa-circle"></i>
+                                        <p>酒紅色是植鞣羊皮。黑、焦糖、裸麥、白色這四色是牛皮<br>，白色皮料有做防汙處理，較不易髒。</p>
+                                    </div>
+                                    <div class="order-text">
+                                        <i class="fas fa-circle"></i>
+                                        <p>跟高約2.5cm。吸汗透氣豚皮內裡(腳墊)。包覆5mm高密<br>度發泡鞋墊。L型90度立體導角真皮沿條。懶人S鈎扣，<br>有三孔可以調整鬆緊。</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="color-style">
-                                @foreach ($product->color as $key=>$color)
-                                    <input type="checkbox" class="color-checkbox" name="color[]" id="{{ $key }}" value='{{ $color }}'>
-                                    <label for="{{ $key }}" class="brown color-button" style="--color:{{ $color }}; border: 10px solid {{ $color }};"></label>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="order-size">
-                            <div class="size-title">
-                                <span>尺寸</span>
-                                <span>35</span>
-                            </div>
-                            <div class="size-deatil">
-                                <div class="small-size">
-                                    @foreach ($product->size as $size)
-                                        <input type="checkbox" name="size[]" class="size-checkbox" id="{{ $size }}" value="{{ $size }}">
-                                        <label for="{{ $size }}" class="size-button" style="--sizeColor:#9e9e9e;">{{ $size }}</label>
-                                    @endforeach
+                            <div class="color-size">
+                                <div class="order-color">
+                                    <div class="color-title">
+                                        <span>顏色</span>
+                                        <span>經典黑</span>
+                                    </div>
+                                    <div class="color-style" data-id="{{ $product->id }}">
+                                        @foreach ($product->colors as $key=>$color)
+                                            <input type="radio" class="color-checkbox" name="color[]" id="{{ $key }}" value='{{ $color->color->color_name }}' data-id="{{ $color->color->id }}"
+                                                @if ($color->color->id == $mycolor)
+                                                    checked
+                                                @endif
+                                            >
+                                            <label for="{{ $key }}" class="brown color-button" data-id="{{ $color->color->id }}" style="--color:{{ $color->color->color }}; background: {{ $color->color->color }}; border:1px solid #a0a0a0">
+                                                <a href="/front/product/detail/{{ $product->id }}?color_id={{ $color->color->id }}" style="display:block; width: 100%; height:100%;"></a>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="order-size">
+                                    <div class="size-title">
+                                        <span>尺寸</span>
+                                        <span class="size-key">0</span>
+                                    </div>
+                                    <div class="size-deatil">
+                                        <div class="small-size">
+                                            @foreach ($product->size as $size)
+                                                <input type="radio" name="size[]" class="size-checkbox" id="{{ $size }}"
+                                                    @foreach ($sizes as $key=>$item)
+                                                        @if ($item == $size)
+                                                            data-key="{{ $key }}" value="{{ $size }}"
+                                                        @endif
+                                                    @endforeach
+                                                    >
+                                                <label for="{{ $size }}" class="size-button" style="--sizeColor:#9e9e9e;">{{ $size }}</label>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="order-shipping">
                         <div class="order-button">
-                            <button class="putcart" data-id="{{ $product->id }}">加入購物車</button>
-                            <button class="pre-order">預購</button>
-                            <div class="order-amount">
-                                <button class="btn minus-btn">-</button>
-                                <input type="number" id="quantity" value="1">
-                                <button class="btn plus-btn">+</button>
-                            </div>
+                            @if ($product->product_quantity >= 1)
+                                <div class="order-buy">
+                                    <button class="putcart clickable" onclick="M.toast({html: 'I am a toast'})" data-id="{{ $product->id }}">
+                                        加入購物車
+                                        <i class="fas fa-check"></i>
+                                        <div class="anim"></div>
+                                    </button>
+                                    <button class="pre-order clickable">
+                                        預購
+                                        <div class="anim"></div>
+                                    </button>
+                                </div>
+                                <div class="order-amount">
+                                    <button class="btn minus-btn">-</button>
+                                    <input type="number" id="quantity" value="1" min="1" max="{{ $product->product_quantity }}">
+                                    <button class="btn plus-btn">+</button>
+                                </div>
+                            @else
+                                <div class="sold-out">
+                                    已售完
+                                </div>
+                            @endif
                         </div>
                         <div class="order-price">
                             <p>${{ $product->price }}</p>
@@ -252,6 +296,57 @@
                                     </div>
                                     <img class="main-photo" src={{ asset('img/shoes-first.png') }} alt="">
                                 </div>
+                                <div class="other-shoes">
+                                    <div class="front-shoes">
+                                        <div class="shoes-img-card">
+                                            <div class="content-text ">
+                                                <p>S型懶人古銅鉤扣</p>
+                                                <p>懶人勾扣，有三節可條鬆緊</p>
+                                            </div>
+                                            <img src={{ asset('img/shoes-introduction-one.png') }} alt="">
+                                        </div>
+                                        <div class="shoes-img-card">
+                                            <div class="content-text">
+                                                <p>L型沿條壓馬克縫線</p>
+                                                <p>有90度立體導角與一般平的沿條工藝不同</p>
+                                            </div>
+                                            <img src={{ asset('img/shoes-introduction-second.png') }} alt="">
+                                        </div>
+                                        <div class="shoes-img-card">
+                                            <div class="content-text">
+                                                <p>吸汗透氣豚皮內裡</p>
+                                                <p>獨家研發包覆5mm高密度發泡層</p>
+                                                <p>擁有強大支撐效果，耐久站、久走</p>
+                                            </div>
+                                            <img src={{ asset('img/shoes-introduction-third.png') }} alt="">
+                                        </div>
+                                    </div>
+                                    <div class="back-shoes">
+                                        <div class="shoes-img-card">
+                                            <div class="content-text">
+                                                <p>防磨乳膠後跟，毛面真皮後跟內裡</p>
+                                                <p>增加摩擦力，減少穿鞋腳跟滑落不便</p>
+                                            </div>
+                                            <img src={{ asset('img/shoes-introduction-fifth.png') }} alt="">
+                                        </div>
+                                        <div class="shoes-img-card">
+                                                <div class="content-text">
+                                                    <p>第一層 : 真皮沿條</p>
+                                                    <p>第二層 : 5mm發泡緩衝夾層</p>
+                                                    <p>第三層 : 鞋底橡膠層</p>
+                                                    <p>第四層 : 木跟</p>
+                                                    <p>第五層 : 橡膠天皮</p>
+                                                </div>
+                                                <img src={{ asset('img/shoes-introduction-fourth-2.png') }} alt="">
+                                        </div>
+                                        <div class="shoes-img-card">
+                                                <div class="content-text">
+                                                    <p>止滑橡膠大底</p>
+                                                </div>
+                                                <img src={{ asset('img/shoes-introduction-fourth-1.png') }} alt="">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -325,10 +420,18 @@
                             <div class="development-process-swiper">
                                 <div class="swiper-container mySwiper4">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">Slide 1</div>
-                                        <div class="swiper-slide">Slide 2</div>
-                                        <div class="swiper-slide">Slide 3</div>
-                                        <div class="swiper-slide">Slide 4</div>
+                                        <div class="swiper-slide">
+                                            <img src={{ asset('img/shoes-development1.jpg') }}>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src={{ asset('img/shoes-development2.jpg') }}>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src={{ asset('img/shoes-development3.jpg') }}>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src={{ asset('img/shoes-development4.jpg') }}>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -441,7 +544,7 @@
                         <div class="shopping-cart">
                             <ul>
                                 <li class="order-cart img-content">
-                                    <img src="https://placeholder.pics/svg/100x100" alt="">
+                                    <img src={{ asset('img/shoes-black1.jpg') }} alt="">
                                     <div class="cart-content">
                                         <div class="cart-title">
                                             <p>品質不輸專櫃!!</p>
@@ -490,61 +593,26 @@
                                             <span>${{ $discount }}</span>
                                         </div>
                                     </div>
-                                    <a href="{{ asset('/front/product/detail') }}/{{ $list[$i]->id }}">了解此商品</a>
+                                    <a href="{{ asset('/front/product/detail') }}/{{ $list[$i]->id }}">
+                                        <button>了解此商品</button>
+                                    </a>
                                 </div>
                             @endfor
-                            {{-- <div class="product-card">
-                                <img src="../img/shoes-second.png" alt="">
-                                <div class="content">
-                                    <div class="text">
-                                        <p>繞帶坡跟魔鬼氈涼鞋</p>
-                                        <p>| 微醺六月 |</p>
-                                    </div>
-                                    <div class="price">
-                                        <span>$3,980</span>
-                                        <span>$2,280</span>
-                                    </div>
-                                </div>
-                                <a>了解此商品</a>
-                            </div>
-                            <div class="product-card">
-                                <img src="../img/shoes-third.png" alt="">
-                                <div class="content">
-                                    <div class="text">
-                                        <p>幾何普普風尖頭平底鞋</p>
-                                        <p>| 幾何萬花筒 |</p>
-                                    </div>
-                                    <div class="price">
-                                        <span>$2,680</span>
-                                        <span>$1,980</span>
-                                    </div>
-                                </div>
-                                <a>了解此商品</a>
-                            </div>
-                            <div class="product-card">
-                                <img src="../img/shoes-fourth.png" alt="">
-                                <div class="content">
-                                    <div class="text">
-                                        <p>寬帶二字平底軟涼鞋</p>
-                                        <p>| 簡單卻不簡單 |</p>
-                                    </div>
-                                    <div class="price">
-                                        <span>$3,280</span>
-                                        <span>$1,980</span>
-                                    </div>
-                                </div>
-                                <a>了解此商品</a>
-                            </div> --}}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="back-top">
+        <a href="#web-top">
+            <i class="a-anchor fas fa-angle-double-up"></i>
+        </a>
+    </div>
 </div>
 @endsection
 
 @section('js')
     <script src={{ asset('js/product-detail.js') }}></script>
-    <script src={{ asset('js/product-navbar.js') }}></script>
 @endsection

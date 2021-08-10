@@ -41,10 +41,19 @@ main .tip {
 main .cont {
   overflow: hidden;
   position: relative;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 700px;
   margin: 0 auto;
   background: #fff;
+}
+
+@media (max-width: 920px) {
+  main .cont {
+    height: 900px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 main .form {
@@ -67,11 +76,24 @@ main .form {
           justify-content: center;
 }
 
+@media (max-width: 920px) {
+  main .form {
+    max-width: 900px;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
 main button {
   display: block;
   margin: 0 auto;
   width: 260px;
-  height: 36px;
+  height: 40px;
   border-radius: 30px;
   color: #fff;
   font-size: 15px;
@@ -120,25 +142,100 @@ main .forgot-pass {
 main .submit {
   margin-top: 40px;
   margin-bottom: 20px;
-  background: #e28749;
+  background: #70b9cf;
   text-transform: uppercase;
   -webkit-transition: .5s;
   transition: .5s;
+  position: relative;
+  overflow: hidden;
 }
 
 main .submit:hover {
   font-weight: bold;
   background-color: #8090a0;
+  z-index: 0;
+}
+
+main .submit .anim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+main .submit .anim:before {
+  position: relative;
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+main .submit .anim:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
 }
 
 main .fb-btn {
-  border: 2px solid #d3dae9;
-  color: #8fa1c7;
+  color: #ffffff;
+  background-color: #4762a5;
 }
 
 main .fb-btn span {
   font-weight: bold;
-  color: #455a81;
+  color: #ffffff;
+}
+
+.clickable:hover .anim {
+  -webkit-animation: anim-out .75s;
+          animation: anim-out .75s;
+}
+
+.clickable:hover .anim:after {
+  -webkit-animation: anim-out-pseudo .75s;
+          animation: anim-out-pseudo .75s;
+}
+
+@-webkit-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
 }
 
 .img {
@@ -167,6 +264,14 @@ main .fb-btn span {
   transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
 }
 
+@media (max-width: 920px) {
+  .img:before {
+    height: 900px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
 .img:after {
   content: '';
   position: absolute;
@@ -182,11 +287,29 @@ main .fb-btn span {
           transform: translate3d(640px, 0, 0);
 }
 
+@media (max-width: 920px) {
+  .img {
+    max-width: 900px;
+    width: 100%;
+    height: 200px;
+    top: unset;
+    bottom: 0;
+    padding-top: 20px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .cont.s--signup .img:before {
+    -webkit-transform: translate3d(0, -700px, 0);
+            transform: translate3d(0, -700px, 0);
+  }
+}
+
 .img__text {
   z-index: 2;
   position: absolute;
   left: 0;
   top: 50px;
+  max-width: 900px;
   width: 100%;
   padding: 0 20px;
   text-align: center;
@@ -195,6 +318,15 @@ main .fb-btn span {
   transition: -webkit-transform 1.2s ease-in-out;
   transition: transform 1.2s ease-in-out;
   transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+@media (max-width: 920px) {
+  .img__text {
+    padding: 0;
+    top: 90px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 .img__text h2 {
@@ -209,9 +341,31 @@ main .fb-btn span {
   line-height: 1.5;
 }
 
+@media (max-width: 920px) {
+  .img__text p {
+    max-width: 300px;
+    margin: auto;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
 .cont.s--signup .img__text.m--up {
   -webkit-transform: translateX(520px);
           transform: translateX(520px);
+}
+
+@media (max-width: 920px) {
+  .img__text.m--up {
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .cont.s--signup .img__text.m--up {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-transform: translateY(400px);
+            transform: translateY(400px);
+  }
 }
 
 .img__text.m--in {
@@ -224,14 +378,30 @@ main .fb-btn span {
           transform: translateX(0);
 }
 
+@media (max-width: 920px) {
+  .img__text.m--in {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-transform: translateY(400px);
+            transform: translateY(400px);
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .cont.s--signup .img__text.m--in {
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
+  }
+}
+
 .img__btn {
   overflow: hidden;
   z-index: 2;
   position: relative;
-  width: 100px;
-  height: 36px;
+  width: 130px;
+  height: 40px;
   margin: 0 auto;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
   color: #fff;
   text-transform: uppercase;
   font-size: 18px;
@@ -239,6 +409,14 @@ main .fb-btn span {
   cursor: pointer;
   -webkit-transition: .5s;
   transition: .5s;
+}
+
+@media (max-width: 920px) {
+  .img__btn {
+    margin-top: 10px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 .img__btn:hover {
@@ -280,8 +458,8 @@ main .fb-btn span {
 }
 
 .img__btn span.m--in {
-  -webkit-transform: translateY(-72px);
-          transform: translateY(-72px);
+  -webkit-transform: translateY(-80px);
+          transform: translateY(-80px);
 }
 
 .cont.s--signup .img__btn span.m--in {
@@ -290,16 +468,17 @@ main .fb-btn span {
 }
 
 .cont.s--signup .img__btn span.m--up {
-  -webkit-transform: translateY(72px);
-          transform: translateY(72px);
+  -webkit-transform: translateY(80px);
+          transform: translateY(80px);
 }
 
 .sub-cont {
   overflow: hidden;
   position: absolute;
-  left: 640px;
+  right: -640px;
   top: 0;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   padding-left: 260px;
   background: #fff;
@@ -312,6 +491,22 @@ main .fb-btn span {
 .cont.s--signup .sub-cont {
   -webkit-transform: translate3d(-640px, 0, 0);
           transform: translate3d(-640px, 0, 0);
+}
+
+@media (max-width: 920px) {
+  .sub-cont {
+    left: 0;
+    top: unset;
+    bottom: 700px;
+    padding-left: 0;
+    padding-bottom: 200px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .cont.s--signup .sub-cont {
+    -webkit-transform: translate3d(0, 700px, 0);
+            transform: translate3d(0, 700px, 0);
+  }
 }
 
 .sign-in {
@@ -328,13 +523,37 @@ main .fb-btn span {
           transform: translate3d(640px, 0, 0);
 }
 
+@media (max-width: 920px) {
+  .sign-in {
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .cont.s--signup .sign-in {
+    -webkit-transform: translate3d(0, -700px, 0);
+            transform: translate3d(0, -700px, 0);
+  }
+}
+
 .sign-up {
   -webkit-transform: translate3d(-900px, 0, 0);
           transform: translate3d(-900px, 0, 0);
 }
 
+.sign-up h2 {
+  font-weight: unset;
+}
+
 .cont.s--signup .sign-up {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 920px) {
+  .sign-up {
+    -webkit-transform: translate3d(0, 900px, 0);
+            transform: translate3d(0, 900px, 0);
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 /*# sourceMappingURL=register.css.map */

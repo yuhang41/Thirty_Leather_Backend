@@ -74,17 +74,17 @@
                                 <h4 >產品顏色</h4>
                             </div>
                             <div class="form-group col-md-12 d-flex align-item-center mb-3">
-                                    @foreach ($color as $key => $item)
-                                    <div class="mr-3 d-flex align-items-center">
-                                        <input type="checkbox" id="color{{ $key }}" name="color[]" value="{{ $item }}">
-                                        <label for="color{{ $key }}" class="d-flex align-items-center m-0">{{ $key }} <div style="background:{{ $item }}; height:10px; width:20px"></div></label>
-                                    </div>
-                                    @endforeach
-                                <button type="button" class="btn btn-outline-dark create_button">新增顏色</button>
-                                <div class="my_color">
+                                @foreach ($color as $key => $item)
+                                <div class="mr-3 d-flex align-items-center">
+                                    <input type="checkbox" id="color{{ $key }}" name="color_id[]" value="{{ $item->id }}">
+                                    <label for="color{{ $key }}" class="d-flex align-items-center m-0">{{ $item->color_name }} <div style="background:{{ $item->color }}; height:10px; width:20px"></div></label>
                                 </div>
+                                @endforeach
                             </div>
-
+                            {{-- <button type="button" class="btn btn-outline-dark create_button">新增顏色</button>
+                            <div class="form-group col-md-12 parents">
+                                <div class="my-color row g-0"></div>
+                            </div> --}}
                             <div class="form-group col-md-12">
                                 <label for="content">產品描述</label>
                                 <textarea class="form-control" id="content" rows="3" name='content'></textarea>
@@ -100,18 +100,33 @@
 @endsection
 
 @section('js')
-<script>
+{{-- <script>
     let create_btn = document.querySelector('.create_button');
-    let my_color = document.querySelector('.my_color');
+    let my_color = document.querySelector('.my-color');
+    let photos = document.querySelector('#photos');
     let input;
+    let input_name;
+    let file;
     function NewColor(e){
         // my_color.innerHTML += `<input type="color" name="color[]" class="mr-3">`;
         input = document.createElement('input');
         input.type = "color";
         input.name = "color[]";
-        input.className = "mr-3";
+        input.className = "mr-3 col-md-2";
+        input_name = document.createElement('input');
+        input_name.type = "text";
+        input_name.name = "color_name[]";
+        input_name.className = "mr-3 col-md-3";
+        input_name.placeholder = '請輸入顏色名稱';
+        file = document.createElement('input');
+        file.type = "file";
+        file.name = "color_photos[]";
+        file.multiple = photos.multiple;
+        file.className = "mr-3 col-md-5";
         my_color.appendChild(input);
+        my_color.appendChild(input_name);
+        my_color.appendChild(file);
     }
     create_btn.addEventListener('click',NewColor);
-</script>
+</script> --}}
 @endsection
