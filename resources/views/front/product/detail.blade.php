@@ -153,6 +153,7 @@
                                 <div class="order-size">
                                     <div class="size-title">
                                         <span>尺寸</span>
+                                        <span>歐碼:</span>
                                         <span class="size-key">0</span>
                                     </div>
                                     <div class="size-deatil">
