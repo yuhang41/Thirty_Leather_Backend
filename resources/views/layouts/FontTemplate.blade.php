@@ -123,9 +123,9 @@
                   購鞋文章
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">購鞋怎麼選</a>
+                  <a class="dropdown-item" href={{ asset('/front/shose') }}>購鞋怎麼選</a>
                   <a class="dropdown-item" href="#">系列鞋款介紹</a>
-                  <a class="dropdown-item" href="{{ asset('/front/shose') }}">製成故事</a>
+                  <a class="dropdown-item" href="#">製成故事</a>
                 </div>
               </li>
               <!-- 試穿服務 -->
