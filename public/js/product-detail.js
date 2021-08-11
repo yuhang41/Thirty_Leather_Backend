@@ -139,11 +139,15 @@ minusBtns.forEach(function(minusBtn){
 });
 
 //size-key
-let size_key = document.querySelector('.size-key');
+let size_eu = document.querySelector('.size-eu');
+let size_us = document.querySelector('.size-us');
+let size_uk = document.querySelector('.size-uk');
 let size_radios = document.querySelectorAll('.size-checkbox');
 size_radios.forEach(radio=>{
   radio.addEventListener('click',()=>{
-    size_key.textContent = radio.checked ? radio.dataset.key : 0;
+    size_eu.textContent = radio.checked ? radio.dataset.eu : 0;
+    size_us.textContent = radio.checked ? radio.dataset.us : 0;
+    size_uk.textContent = radio.checked ? radio.dataset.uk : 0;
   })
 });
 
@@ -162,36 +166,41 @@ putcart.addEventListener('click',function(){
     let quantity = document.querySelector('#quantity');
     let csrf_token =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     let formData =new FormData();
-    if(min){
-        colorCheckboxs.forEach(checkbox =>{
-            if(checkbox.checked){
-                formData.append('color',checkbox.value);
-                formData.append('color_id',checkbox.dataset.id);
-            }
-        });
-        sizeCheckboxs.forEach(checkbox =>{
-            if(checkbox.checked){
-                formData.append('size',checkbox.value);
-            }
-        });
-        formData.append('_token',csrf_token);
-        formData.append('productId',productId);
-        formData.append('quantity',quantity.value);
-        fetch('/front/product/add',{
-            'method' : 'post',
-            'body' : formData
-        }).then(rep=>{
-            return rep.text();
-        }).then(result=>{
-            if(result == 'success'){
-                min = false;
-                putcart.firstChild.data='';
-                clickButtonEffect();
-            }else{
-                alert('請選擇顏色或size');
-            }
-        })
+    if(eval(putcart.dataset.boolin)){
+        if(min){
+            colorCheckboxs.forEach(checkbox =>{
+                if(checkbox.checked){
+                    formData.append('color',checkbox.value);
+                    formData.append('color_id',checkbox.dataset.id);
+                }
+            });
+            sizeCheckboxs.forEach(checkbox =>{
+                if(checkbox.checked){
+                    formData.append('size',checkbox.value);
+                }
+            });
+            formData.append('_token',csrf_token);
+            formData.append('productId',productId);
+            formData.append('quantity',quantity.value);
+            fetch('/front/product/add',{
+                'method' : 'post',
+                'body' : formData
+            }).then(rep=>{
+                return rep.text();
+            }).then(result=>{
+                if(result == 'success'){
+                    min = false;
+                    putcart.firstChild.data='';
+                    clickButtonEffect();
+                }else{
+                    alert('請選擇顏色或size');
+                }
+            })
+        }
+    }else{
+        subscriptionButtonEffect();
     }
+
 });
 function clickButtonEffect(){
     cartClick();
@@ -206,6 +215,21 @@ function clickButtonEffect(){
       window.setTimeout(function(){
         cartDelete();
       },250)
+    });
+}
+function subscriptionButtonEffect(){
+    min = false;
+    subscription();
+    let promise = new Promise((resolve)=>{
+        window.setTimeout(function(){
+            subscriptionUnclick();
+            return resolve();
+        },500)
+    })
+    promise.then(()=>{
+        window.setTimeout(function(){
+            subscriptionDelete();
+        },250)
     });
 }
 function cartClick(){
@@ -223,7 +247,23 @@ function cartDelete(){
     orderBuy.classList.remove('active2');
     min = true;
 }
+function subscription(){
+    everyStyle('','block','#6ba2f2','subscription');
+}
+function subscriptionUnclick(){
+if( orderBuy.classList.contains('subscription')){
+    everyStyle('加入購物車','none','unset','subscription2');
+}
+};
+function subscriptionDelete(){
+AllDelete('subscription','subscription2');
+}
 
+function AllDelete(class1,class2){
+    orderBuy.classList.remove(class1);
+    orderBuy.classList.remove(class2);
+    min = true;
+}
 function everyStyle(data,display,background,className){
     putcart.firstChild.data = data;
     check.style.display = display ;

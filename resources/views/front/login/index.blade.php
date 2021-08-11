@@ -48,27 +48,27 @@
                 @endphp
                 <label>
                     <span>名稱</span>
-                    <input type="text" name="name"/>
+                    <input type="text" name="name" placeholder="輸入會員名稱  必須填寫"/>
                 </label>
                 <label>
                     <span>信箱</span>
-                    <input type="email" name="email"/>
+                    <input type="email" name="email" placeholder="例如:(xxx123@gmail.com)  必須填寫"/>
                 </label>
                 <label>
                     <span>密碼</span>
-                    <input type="password" name="password"/>
+                    <input type="password" name="password" placeholder="必須大於8個字  必須填寫"/>
                 </label>
                 <label>
                     <span>確認密碼</span>
-                    <input type="password" name="password_confirmation"/>
+                    <input type="password" name="password_confirmation" placeholder="必須填寫"/>
                 </label>
                 <label>
                     <span>電話</span>
-                    <input type="text" name="phone"/>
+                    <input type="text" name="phone" placeholder="09xx - xxx - xxx  必須填寫"/>
                 </label>
                 <label>
                     <span>地址</span>
-                    <input type="text" name="address"/>
+                    <input type="text" name="address" placeholder="必須填寫"/>
                 </label>
                 <button class="submit clickable" id="user-register">
                     註冊

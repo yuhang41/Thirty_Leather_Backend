@@ -65,6 +65,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function(){
         Route::get('color/edit/{id}','ColorController@edit');
         Route::post('color/edit/update/{id}','ColorController@update');
         Route::delete('color/delete/{id}','ColorController@delete');
+
+        //size
+        Route::get('size/','SizeController@index');
+        Route::get('size/create','SizeController@create');
+        Route::post('size/create/store','SizeController@store');
+        Route::get('size/edit/{id}','SizeController@edit');
+        Route::post('size/edit/update/{id}','SizeController@update');
+        Route::delete('size/delete/{id}','SizeController@delete');
     });
 
     // Route::prefix('contactus')->group(function(){

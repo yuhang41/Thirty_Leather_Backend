@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\ColorImg;
-use App\FollowList;
+use App\Size;
 use App\User;
 use App\Order;
 use App\Product;
+use App\ColorImg;
+use App\TypeClass;
+use App\FollowList;
 use App\OrderDetail;
 use App\ProductType;
-use App\TypeClass;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Faker\Provider\zh_TW\DateTime;
@@ -54,14 +55,14 @@ class FrontController extends Controller
     public function ShoppingStep1(){
         $list = \Cart::getContent()->sortKeys();
         $product_type = ProductType::find(13);
-        $sizes = Product::SIZE;
+        $sizes = Size::get();
         return view($this->step1,compact('list','sizes','product_type'));
     }
 
     public function ShoppingStep2(){
         $Calc_All = $this->CartCalc();
         $list = \Cart::getContent()->sortKeys();
-        $sizes = Product::SIZE;
+        $sizes = Size::get();
         return view($this->step2,compact('Calc_All','sizes','list'));
     }
     public function Step2_Check(Request $req){
@@ -131,7 +132,7 @@ class FrontController extends Controller
         $receive_phone = Session::get('receive-phone');
         $date = Session::get('date');
 
-        $sizes = Product::SIZE;
+        $sizes = Size::get();
         return view($this->step3,compact('order','receive_name','receive_phone','receive_phone','sizes','date'));
     }
 
@@ -155,8 +156,9 @@ class FrontController extends Controller
         }
         $product = Product::find($id);
         $list = Product::get();
-        $sizes = Product::SIZE;
-        return view($this->product_detail,compact('product','list','sizes','judgment','color_photo'));
+        $sizes = Size::get();
+        $class = TypeClass::get();
+        return view($this->product_detail,compact('product','list','sizes','judgment','color_photo','class'));
     }
     // public function product_detail_color(Request $req){
 
@@ -169,6 +171,7 @@ class FrontController extends Controller
     public function add(Request $req){
         $product = Product::find($req->productId);
         $price = $this->Calculation($product->price,$product->discount);
+        $color_photo = ColorImg::where('color_id',$req->color_id)->first();
         $quantity = $req->quantity;
         if(!$req->size || !$req->color){
             return 'error';
@@ -179,7 +182,7 @@ class FrontController extends Controller
             'price' => $price,
             'quantity' => $quantity,
             'attributes' => array(
-                'photo' => $product->photo,
+                'photo' => $color_photo->photos,
                 'nickname' => $product->product_nickname,
                 'size' => $req->size,
                 'color' => $req->color,

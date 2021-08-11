@@ -11,7 +11,7 @@
     <div class="swiper1">
         <div class="swiper-container myswiper1">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image: url({{ asset('img/banner.jpg') }});"></div>
+                <div class="swiper-slide" style="background-image: url({{ asset('img/banner1.jpg') }});"></div>
                 <div class="swiper-slide" style="background-image: url({{ asset('img/banner2.jpg') }});"></div>
                 <div class="swiper-slide" style="background-image: url({{ asset('img/banner3.jpg') }});"></div>
                 <div class="swiper-slide" style="background-image: url({{ asset('img/banner4.jpg') }});"></div>

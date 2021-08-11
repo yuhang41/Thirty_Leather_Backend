@@ -830,7 +830,13 @@ main .main-container .product-container .productshop-container .commidity-contai
   }
 }
 
-main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title span:nth-child(1) {
+main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title span {
+  font-size: 14px;
+  color: #7b8ca2;
+  margin-right: 5px;
+}
+
+main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title .all-size {
   font-size: 24px;
   color: #354b5e;
   font-weight: bold;
@@ -838,13 +844,7 @@ main .main-container .product-container .productshop-container .commidity-contai
   margin-right: 10px;
 }
 
-main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title span:nth-child(2) {
-  font-size: 14px;
-  color: #7b8ca2;
-  margin-right: 5px;
-}
-
-main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title span:nth-child(3) {
+main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title .size-eu, main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title .size-us, main .main-container .product-container .productshop-container .commidity-container .order-detail .odrer-info .order-contain .color-size .order-size .size-title .size-uk {
   font-size: 14px;
   font-weight: bold;
   color: #7b8ca2;
@@ -1151,19 +1151,31 @@ main .main-container .product-container .productshop-container .commidity-contai
 }
 
 main .main-container .product-container .productshop-container .commidity-container .order-detail .order-shipping .order-button .order-buy.active.active2::after {
-  content: " + 已加入購物車";
+  -webkit-animation: cart-fade-out .3s ease-in-out;
+          animation: cart-fade-out .3s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+main .main-container .product-container .productshop-container .commidity-container .order-detail .order-shipping .order-button .order-buy.subscription::after {
+  content: " + 已訂閱補貨通知";
   position: absolute;
   top: -80px;
   left: -50px;
   width: 235px;
   height: 60px;
-  font-size: 24px;
+  font-size: 21px;
   background-color: #7b8c2a;
   color: #ffffff;
   border-radius: 30px;
   -webkit-box-shadow: 0px 17px 23px -19px rgba(0, 0, 0, 0.61);
           box-shadow: 0px 17px 23px -19px rgba(0, 0, 0, 0.61);
   padding: 12px 34px;
+  -webkit-animation: cart-fade-in .3s ease-in-out;
+          animation: cart-fade-in .3s ease-in-out;
+}
+
+main .main-container .product-container .productshop-container .commidity-container .order-detail .order-shipping .order-button .order-buy.subscription.subscription2::after {
   -webkit-animation: cart-fade-out .3s ease-in-out;
           animation: cart-fade-out .3s ease-in-out;
   -webkit-animation-fill-mode: forwards;
@@ -1302,7 +1314,6 @@ main .main-container .product-container .productshop-container .commidity-contai
 }
 
 main .main-container .product-container .productshop-container .commidity-container .order-detail .order-shipping .order-button .sold-out {
-  width: 100%;
   font-size: 30px;
   color: #77170a;
 }

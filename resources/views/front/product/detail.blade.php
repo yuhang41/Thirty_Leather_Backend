@@ -15,26 +15,27 @@
                 所有商品
             </div>
             <ul class="commodity-menu-options collapse show" id="multiCollapseExample1">
-                <li><a href="#">女鞋</a></li>
-                <li><a href="#">小白鞋</a></li>
-                <li><a href="#">紳士鞋</a></li>
-                <li><a href="#">休閒鞋</a></li>
-                <li><a href="#">平底鞋</a></li>
-                <li><a href="#">跟鞋</a></li>
-                <li><a href="#">涼鞋</a></li>
-                <li><a href="#">娃娃鞋</a></li>
-                <li><a href="#">鞋款</a></li>
-                <li><a href="#">防水系列</a></li>
+                <li><a href="{{ asset('/front/product/') }}">全部</a></li>
+                @foreach ($class as $item)
+                    @if ($item->id == 1)
+                        @foreach ($item->types as $type)
+                            <li><a href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a></li>
+                        @endforeach
+                    @endif
+                @endforeach
             </ul>
             <div class="commodity-menu-title Snowshoe collapsed" data-toggle="collapse" data-target="#multiCollapseExample2"
                 aria-expanded="false" aria-controls="multiCollapseExample2">
                 訂製雪靴
             </div>
             <ul class="commodity-menu-options collapse" id="multiCollapseExample2">
-                <li><a href="#">迷你筒(16cm-18cm)</a></li>
-                <li><a href="#">低筒(22cm-24cm)</a></li>
-                <li><a href="#">中筒(26cm-28cm)</a></li>
-                <li><a href="#">高筒(30cm-33cm)</a></li>
+                @foreach ($class as $item)
+                    @if ($item->id == 3)
+                        @foreach ($item->types as $type)
+                            <li><a href="{{ asset('/front/product') }}?type_id={{ $type->id }}">{{ $type->product_type }}</a></li>
+                        @endforeach
+                    @endif
+                @endforeach
             </ul>
             <div class="commodity-other">
                 配件
@@ -152,17 +153,24 @@
                                 </div>
                                 <div class="order-size">
                                     <div class="size-title">
-                                        <span>尺寸</span>
+                                        <span class="all-size">尺寸</span>
                                         <span>歐碼:</span>
-                                        <span class="size-key">0</span>
+                                        <span class="size-eu">0</span>
+                                        <span>美碼:</span>
+                                        <span class="size-us">0</span>
+                                        <span>英碼:</span>
+                                        <span class="size-uk">0</span>
                                     </div>
                                     <div class="size-deatil">
                                         <div class="small-size">
                                             @foreach ($product->size as $size)
                                                 <input type="radio" name="size[]" class="size-checkbox" id="{{ $size }}"
-                                                    @foreach ($sizes as $key=>$item)
-                                                        @if ($item == $size)
-                                                            data-key="{{ $key }}" value="{{ $size }}"
+                                                    @foreach ($sizes as $item)
+                                                        @if ($item->cm == $size)
+                                                            data-eu="{{ $item->eu }}"
+                                                            data-us="{{ $item->us }}"
+                                                            data-uk="{{ $item->uk }}"
+                                                            value="{{ $size }}"
                                                         @endif
                                                     @endforeach
                                                     >
@@ -178,7 +186,7 @@
                         <div class="order-button">
                             @if ($product->product_quantity >= 1)
                                 <div class="order-buy">
-                                    <button class="putcart clickable" onclick="M.toast({html: 'I am a toast'})" data-id="{{ $product->id }}">
+                                    <button class="putcart clickable" onclick="M.toast({html: 'I am a toast'})" data-id="{{ $product->id }}" data-boolin="true">
                                         加入購物車
                                         <i class="fas fa-check"></i>
                                         <div class="anim"></div>
@@ -194,6 +202,15 @@
                                     <button class="btn plus-btn">+</button>
                                 </div>
                             @else
+                                <div class="order-buy">
+                                    <button  class="putcart" data-boolin="false">
+                                        訂閱補貨通知
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="pre-order">
+                                        預購
+                                    </button>
+                                </div>
                                 <div class="sold-out">
                                     已售完
                                 </div>

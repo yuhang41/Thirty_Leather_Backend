@@ -134,14 +134,14 @@
                             <div class="form-group col-md-12 d-flex mb-3 flex-wrap">
                                 @foreach ($sizes as $key => $item)
                                     <div class="mr-3">
-                                        <input type="checkbox" id="{{ $key }}" name="size[]" value="{{ $item }}"
+                                        <input type="checkbox" id="{{ $key }}" name="size[]" value="{{ $item->cm }}"
                                             @foreach ($check as $checked)
-                                                @if ($item == $checked)
+                                                @if ($item->cm == $checked)
                                                     checked
                                                 @endif
                                             @endforeach
                                         >
-                                        <label for="{{ $key }}">{{ $item }}</label>
+                                        <label for="{{ $key }}">{{ $item->cm }}</label>
                                     </div>
                                 @endforeach
                             </div>

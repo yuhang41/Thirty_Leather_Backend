@@ -7,6 +7,7 @@ use App\Product;
 use App\ProductType;
 use App\ColorProduct;
 use App\ProductOtherImg;
+use App\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -25,7 +26,7 @@ class ProductController extends Controller
     }
     public function create(){
         $type = ProductType::get();
-        $sizes = Product::SIZE;
+        $sizes = Size::get();
         $color = Color::get();
         return view($this->create,compact('type','sizes','color'));
     }
@@ -58,7 +59,7 @@ class ProductController extends Controller
     public function edit($id){
         $type = ProductType::get();
         $edit = Product::find($id);
-        $sizes = Product::SIZE;
+        $sizes = Size::get();
         $color = Color::get();
         return view($this->edit,compact('type','edit','sizes','color'));
     }
@@ -75,9 +76,9 @@ class ProductController extends Controller
         }
         $old_record = Product::find($id);
         if($req->hasFile('photo')){
-            File::delete(public_path(), $old_record->photo);
+            File::delete(public_path().$old_record->photo);
             $phat = FileController::imgUpload($req->photo,'main');
-            $old_record['photo'] = $phat;
+            $old_record->update(['photo' => $phat]) ;
         }
         if($req->photos){
             foreach($req->photos as $item){

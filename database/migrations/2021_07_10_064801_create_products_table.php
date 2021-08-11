@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             // $table->string('color')->comment('顏色');
             $table->integer('product_quantity')->comment('產品庫存量');
             $table->longText('content')->comment('產品描述');
-            $table->longText('photo')->comment('圖片');
+            $table->longText('photo')->comment('圖片')->default('https://placeholder.pics/svg/300x500');
             $table->timestamps();
         });
     }

@@ -65,8 +65,8 @@
                             <div class="form-group col-md-12 d-flex mb-3 flex-wrap">
                                 @foreach ($sizes as $key => $item)
                                     <div class="mr-3">
-                                        <input type="checkbox" id="size{{ $key }}" name="size[]" value="{{ $item }}">
-                                        <label for="size{{ $key }}">{{ $item }}</label>
+                                        <input type="checkbox" id="size{{ $key }}" name="size[]" value="{{ $item->cm }}">
+                                        <label for="size{{ $key }}">{{ $item->cm }}</label>
                                     </div>
                                 @endforeach
                             </div>
