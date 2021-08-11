@@ -319,6 +319,7 @@ main .member-page .member-lists .tab-content .tab-pane .member-data .member-cont
   margin-left: 15px;
   font-size: 15px;
   width: 230px;
+  color: #444444;
 }
 
 @media (max-width: 450px) {
@@ -414,6 +415,7 @@ main .member-page .member-lists .tab-content .tab-pane .member-data .member-cont
   border: 1px solid #8090a0;
   outline: none;
   padding-left: 4px;
+  color: #444444;
 }
 
 @media (max-width: 1024px) {

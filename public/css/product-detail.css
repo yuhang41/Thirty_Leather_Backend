@@ -3538,6 +3538,11 @@ main .main-container .product-container .productother-container .other-container
   color: #70b9cf;
 }
 
+main .main-container .product-container .productother-container .other-container .related-commid .product-item .product-card a {
+  margin: 30px 0px 10px 0px;
+  text-decoration: none;
+}
+
 main .main-container .product-container .productother-container .other-container .related-commid .product-item .product-card a button {
   cursor: pointer;
   width: 250px;
@@ -3546,7 +3551,6 @@ main .main-container .product-container .productother-container .other-container
   background-color: unset;
   border: 2px solid #a0a0a0;
   border-radius: 45px;
-  margin: 30px 0px 10px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

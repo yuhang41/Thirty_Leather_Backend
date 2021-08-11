@@ -3090,6 +3090,11 @@ main .main-container .new-product .container .product-item .product-card .conten
   color: #70b9cf;
 }
 
+main .main-container .new-product .container .product-item .product-card a {
+  margin: 30px 0px 10px 0px;
+  text-decoration: none;
+}
+
 main .main-container .new-product .container .product-item .product-card a button {
   width: 235px;
   height: 50px;
@@ -3097,7 +3102,6 @@ main .main-container .new-product .container .product-item .product-card a butto
   background-color: unset;
   border: 2px solid #70b9cf;
   border-radius: 45px;
-  margin: 30px 0px 10px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3900,6 +3904,14 @@ main .main-container .studio-information .studio-photo .photo {
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  main .main-container .studio-information .studio-photo .photo {
+    height: 841px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
 main .main-container .studio-information .studio-photo .photo[data-inviewport="scale-in"] {
   opacity: 0;
   -webkit-transition: 1s;
@@ -3910,6 +3922,15 @@ main .main-container .studio-information .studio-photo .photo[data-inviewport="s
   opacity: 1;
   -webkit-animation: photo-fold 1s linear forwards;
           animation: photo-fold 1s linear forwards;
+}
+
+@media (max-width: 1024px) {
+  main .main-container .studio-information .studio-photo .photo[data-inviewport="scale-in"].is-inViewport {
+    -webkit-animation: none;
+            animation: none;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
 }
 
 @-webkit-keyframes photo-fold {

@@ -1,5 +1,4 @@
 @extends('layouts.FontTemplate')
-
 @section('title','三十革')
 @section('css')
     <link rel="stylesheet" href={{ asset('css/index.css') }}>
@@ -24,11 +23,17 @@
                 <p>∵ 生活好質感 從穿上開始 ∵</p>
             </div>
             <div class="banner-content">
-                <a href="#"><button>SHOP NOW</button></a>
+                <a href="{{ asset('/front/product') }}"><button>SHOP NOW</button></a>
                 <div class="text">
-                    <p>#防疫期間—</p>
-                    <p>#官網滿千免運</p>
-                    <p>#試穿請前一天預約</p>
+                    <div class="text-mask">
+                        <p>#防疫期間—</p>
+                    </div>
+                    <div class="text-mask">
+                        <p>#官網滿千免運</p>
+                    </div>
+                    <div class="text-mask">
+                        <p>#試穿請前一天預約</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,12 +158,12 @@
                     WE STORY .
                 </div>
                 <div class="title" data-aos="fade-up" data-aos-anchor-placement="top-center">
-                    <p class="short-line">分享自己喜歡的生活質感</p>
+                    <p class="short-line" data-inviewport="scale-in">分享自己喜歡的生活質感</p>
                     <p>遇見眼光相似的妳(你)我.</p>
                 </div>
                 <div class="content" data-aos="fade-up">
                     <div class="preamble">
-                        <p class="long-line">三十革 因鞋而生</p>
+                        <p class="long-line" data-inviewport="scale-in">三十革 因鞋而生</p>
                         <p>抱著分享好鞋的初衷</p>
                         <p>柔和老傳統的注入新創意</p>
                         <p>傳承志鞋一甲子師傅的精湛工藝</p>
@@ -178,23 +183,29 @@
     <!-- 製鞋文章 -->
     <div class="shoemaking d-flex">
         <div class="container mx-auto">
-            <div class="shoemaking-card" data-aos="fade-up" data-aos-anchor-placement="top-center">
+            <div class="shoemaking-card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                 <div class="shoes-card chose-shoes">
-                    <img src="./img/shoes-card1.svg" alt="">
+                    <a href="{{ asset('/front/shose/') }}">
+                        <img alt="" style="background-image: url(/img/shoes-card1.svg);">
+                    </a>
                     <div class="text">
                         <p>購鞋怎麼選</p>
                         <p>How to choose</p>
                     </div>
                 </div>
                 <div class="shoes-card shoes-introduction">
-                    <img src="./img/shoes-card2.svg" alt="">
+                    <a href="">
+                        <img alt="" style="background-image: url(/img/shoes-card2.svg);">
+                    </a>
                     <div class="text">
                         <p>系列鞋款介紹</p>
                         <p>Series Introduction</p>
                     </div>
                 </div>
                 <div class="shoes-card shoemaking-story">
-                    <img src="./img/shoes-card3.svg" alt="">
+                    <a href="">
+                        <img alt="" style="background-image: url(/img/shoes-card1.svg);">
+                    </a>
                     <div class="text">
                         <p>製作過程</p>
                         <p>Making a story</p>
@@ -382,8 +393,8 @@
     <div class="new-product" data-inviewport="scale-in">
         <div class="product-title">
             <div class="text">
-                <span>新品上市</span><br>
-                <span>New product</span>
+                <p>新品上市</p>
+                <p>New product</p>
             </div>
         </div>
         <div class="container">
@@ -430,7 +441,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-1.jpg') }} alt="">
+                            <img src={{ asset('img/照片牆1.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -438,8 +449,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-2.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/BrxfxKDFjS8/">
+                            <img src={{ asset('img/照片牆2.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -447,8 +458,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-3.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/Br5eY61la7y/">
+                            <img src={{ asset('img/照片牆3.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -456,8 +467,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-4.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/CBXttsZDRI1/?utm_source=ig_web_copy_link">
+                            <img src={{ asset('img/照片牆4.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -465,8 +476,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-5.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/BxoJZTKAzP9/">
+                            <img src={{ asset('img/照片牆5.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -474,8 +485,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-6.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/CI-OsbYsQ7x/">
+                            <img src={{ asset('img/照片牆6.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -483,8 +494,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-7.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/Bz4_udEhK45/?utm_source=ig_web_copy_link">
+                            <img src={{ asset('img/照片牆7.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -492,8 +503,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-8.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/COW2sSBDsN6/">
+                            <img src={{ asset('img/照片牆8.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>
@@ -501,8 +512,8 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="https://www.instagram.com/p/B8ihLBWFjTg/">
-                            <img src={{ asset('img/model-9.jpg') }} alt="">
+                        <a href="https://www.instagram.com/p/CQgU3jeM272/">
+                            <img src={{ asset('img/照片牆9.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
                                 <p>linta0525</p>

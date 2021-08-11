@@ -42,6 +42,7 @@
                                 <a class="dropdown-item" href="{{ asset('/admin/product/type') }}">產品種類</a>
                                 <a class="dropdown-item" href="{{ asset('/admin/product') }}">品項</a>
                                 <a class="dropdown-item" href="{{ asset('/admin/product/color') }}">品項顏色</a>
+                                <a class="dropdown-item" href="{{ asset('/admin/product/size') }}">品項尺寸</a>
                             </div>
                         </li>
                     </ul>
