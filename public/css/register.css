@@ -130,6 +130,22 @@ main input {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
+main input::-webkit-input-placeholder {
+  font-size: 13px;
+}
+
+main input:-ms-input-placeholder {
+  font-size: 13px;
+}
+
+main input::-ms-input-placeholder {
+  font-size: 13px;
+}
+
+main input::placeholder {
+  font-size: 13px;
+}
+
 main .forgot-pass {
   margin-top: 15px;
   text-align: center;
