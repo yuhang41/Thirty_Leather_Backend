@@ -453,7 +453,7 @@
                             <img src={{ asset('img/照片牆2.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>tintin_korea</p>
                             </div>
                         </a>
                     </div>
@@ -462,7 +462,7 @@
                             <img src={{ asset('img/照片牆3.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>rikaoru</p>
                             </div>
                         </a>
                     </div>
@@ -471,7 +471,7 @@
                             <img src={{ asset('img/照片牆4.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>mi_azure</p>
                             </div>
                         </a>
                     </div>
@@ -480,7 +480,7 @@
                             <img src={{ asset('img/照片牆5.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>_yu.tzu_</p>
                             </div>
                         </a>
                     </div>
@@ -489,7 +489,7 @@
                             <img src={{ asset('img/照片牆6.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>joy19960610</p>
                             </div>
                         </a>
                     </div>
@@ -498,7 +498,7 @@
                             <img src={{ asset('img/照片牆7.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>allyyeh0220</p>
                             </div>
                         </a>
                     </div>
@@ -507,7 +507,7 @@
                             <img src={{ asset('img/照片牆8.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>nonprofessionalljzx</p>
                             </div>
                         </a>
                     </div>
@@ -516,7 +516,7 @@
                             <img src={{ asset('img/照片牆9.jpg') }} alt="">
                             <div class="text">
                                 <i class="fab fa-instagram"></i>
-                                <p>linta0525</p>
+                                <p>stairgurlwantstoberich</p>
                             </div>
                         </a>
                     </div>
