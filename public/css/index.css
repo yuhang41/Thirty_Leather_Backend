@@ -242,6 +242,27 @@ main .main-container .swiper1 .swiper-slide {
   }
 }
 
+@media (max-width: 540px) {
+  main .main-container .swiper1 .swiper-slide.large-size {
+    display: none;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
+main .main-container .swiper1 .swiper-slide.small-size {
+  display: none;
+}
+
+@media (max-width: 540px) {
+  main .main-container .swiper1 .swiper-slide.small-size {
+    display: block;
+    background-position: top;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
 main .main-container .swiper1 .banner-card {
   width: 500px;
   height: 300px;
